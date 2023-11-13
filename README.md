@@ -9,5 +9,5 @@
 - Profesores: María José Rotter, Claudia Carrasco, Albany Petit & Facundo Muñoz
 - Universidad Nacional del Comahue
 - Grupo n°: 8
-- Integrantes: Rodrigo Villablanca,
+- Integrantes: Rodrigo Villablanca - Legajo FAI-5097 - email: rodrialvillablanca@gmail.com - Github: shodrig0
 ```
