@@ -2,7 +2,7 @@
 
 ## Trabajo Práctico grupal y final de IP
 
-### Juego Wordix. IP BLABLABLA
+### Juego Wordix.
 
 ```
 - Materia: Introducción a la Programación.
