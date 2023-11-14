@@ -9,7 +9,7 @@
 - Profesores: María José Rotter, Claudia Carrasco, Albany Petit & Facundo Muñoz
 - Universidad Nacional del Comahue
 - Grupo n°: 8
-- Integrantes: Rodrigo Villablanca / Legajo FAI-5097 / email: rodrialvillablanca@gmail.com / Github: shodrig0
-               Paola Fernanda Garcia Romero / Legajo FAI-4387 / email: paolagarcianqn@gmail.com / Github: PaoGarciaRF
-               Ilel Luciana Almeira / Legajo FAI4914 / email: ilelalmeira@gmail.com / Github: ilelalmeira
+- Integrantes: Villablanca Rodrigo / Legajo FAI-5097 / email: rodrialvillablanca@gmail.com / Github: shodrig0
+               Garcia Romero Paola Fernanda / Legajo FAI-4387 / email: paolagarcianqn@gmail.com / Github: PaoGarciaRF
+               Almeira Ilel Luciana / Legajo FAI4914 / email: ilelalmeira@gmail.com / Github: ilelalmeira
 ```
