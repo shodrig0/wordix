@@ -9,9 +9,9 @@ include_once("wordix.php");
 
 /* Apellido, Nombre. Legajo. Carrera. mail. Usuario Github */
 /* ****COMPLETAR***** */
-/*  Rodrigo Villablanca - Legajo FAI-5097 - email: rodrialvillablanca@gmail.com - Github: shodrig0
-    Paola Fernanda Garcia Romero - Legajo FAI4387 - mail: paolagarcianqn@gmail.com - Github: PaoGarciaRF
-    Ilel Luciana Almeira - Legajo FAI 4914 - email: ilelalmeira@gmail.com - Github: ilelalmeira
+/*  Villablanca Rodrigo/ Legajo FAI-5097 / email: rodrialvillablanca@gmail.com / Github: shodrig0
+    Garcia Romero Paola Fernanda/ Legajo FAI-4387 / email: paolagarcianqn@gmail.com / Github: PaoGarciaRF
+    Almeira Ilel Luciana/ Legajo FAI-4914 / email: ilelalmeira@gmail.com / Github: ilelalmeira
 
 /**************************************/
 /***** DEFINICION DE FUNCIONES ********/
@@ -26,8 +26,8 @@ function cargarColeccionPalabras()
     $coleccionPalabras = [
         "MUJER", "QUESO", "FUEGO", "CASAS", "RASGO",
         "GATOS", "GOTAS", "HUEVO", "TINTO", "NAVES",
-        "VERDE", "MELON", "YUYOS", "PIANO", "PISOS"
-        /* Agregar 5 palabras más */
+        "VERDE", "MELON", "YUYOS", "PIANO", "PISOS",
+        "BOTAS", "REINA", "TIGRE", "TRONO", "DAMAS"
     ];
 
     return ($coleccionPalabras);
