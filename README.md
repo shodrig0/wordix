@@ -1,8 +1,8 @@
-# wordix
+# WORDIX
 
 ## Trabajo Práctico grupal y final de IP
 
-### Juego Wordix.
+### Detalles: 
 
 ```
 - Materia: Introducción a la Programación.
