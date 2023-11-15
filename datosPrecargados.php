@@ -4,23 +4,6 @@
  *  Necesaria para los datos precargados.
  */
 
-/**
- *  SISTEMA DE PUNTUACIÓN:
- *  POR INTENTOS:
- *  Si el jugador adivina al 1er intento obtendrá 6 puntos;
- *  en el 2do intento, 5;
- *  en el 3er intento, 4; 
- *  en el 4to, obtendrá 3; 
- *  en el 5to intento, 2;
- *  en el 6to, sólo un punto;
- *  Si no adivina dentro de los 6 intentos, obtendrá 0.
- *  POR LETRAS:
- *  Cada vocal vale: 1
- *  Cada consonante, hasta la M (inclusive) vale: 2
- *  Desde la N en adelante, cada consonante vale: 3
- *  RESULTADO FINAL: 
- *  La suma de cada letra, debe sumarse a los puntos obtenidos del intento en el que adivinó el jugador.
- */
 
 function cargarPartidasPrecargadas()
 {
