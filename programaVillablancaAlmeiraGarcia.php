@@ -1,6 +1,7 @@
 <?php
-include_once("wordix.php");
 
+include_once("wordix.php");
+include_once("datosPrecargados.php");
 
 
 /**************************************/
