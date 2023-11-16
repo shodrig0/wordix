@@ -27,9 +27,9 @@ function juegoPalabraElegida($coleccionPalabras, $numeroDePalabra)
         }
     } while ($palabraDisponible);
 
-    $palabraSeleccionada = $coleccionPalabras[$numeroElegido - 1];
+    //$palabraSeleccionada = $coleccionPalabras[$numeroElegido - 1];
 
-    $partida = jugarWordix($palabraSeleccionada, strtolower($nombreJugador));
+    $partida = jugarWordix($coleccionPalabras[$numeroElegido - 1], strtolower($nombreJugador));
 
     return $partida;
 }
