@@ -1,14 +1,13 @@
 <?php
 
 include_once("wordix.php");
-include_once("index.php");
+include_once("programaVillablancaAlmeiraGarcia.php");
 
 /* Acá van a ir las funciones primarias
 */
 
 function juegoPalabraElegida($coleccionPalabras, $numeroDePalabra)
 {
-    echo "(*＾-＾*)\n";
     echo "Hola hola!! Ingresa tu nombre: ";
     $nombreJugador = trim(fgets(STDIN));
 
@@ -16,19 +15,17 @@ function juegoPalabraElegida($coleccionPalabras, $numeroDePalabra)
         echo "Ahora elige un número: ";
         $numeroElegido = trim(fgets(STDIN));
         $cantPalabrasUtilizadas = count($numeroDePalabra);
-        $palabraDisponible = false;
+        $palabraDisponible = true;
 
         for ($i = 0; $i < $cantPalabrasUtilizadas; $i++) {
             if ($numeroElegido != $numeroDePalabra[$i]) {
-                $palabraDisponible = true;
+                $palabraDisponible = false;
             }
         }
-
-        if (!$palabraDisponible) { //convierto el true a false al negarlo
-            echo "(* ￣︿￣)\n";
+        if (!$palabraDisponible) {
             echo "Ups, ese número ya lo utilizaste! Intenta con otro.\n";
         }
-    } while ($palabraDisponible);
+    } while (!$palabraDisponible);
 
     $palabraSeleccionada = $coleccionPalabras[$numeroElegido];
 
