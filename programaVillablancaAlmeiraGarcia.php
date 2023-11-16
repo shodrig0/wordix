@@ -67,8 +67,9 @@ do {
 
             break;
         case 2:
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 2
-
+            $nro = random_int (0, count($coleccionPalabrasPrecargadas));
+            $indice = $coleccionPalabrasPrecargadas [$nro];
+            $partidaActual = jugarWordix($indice, $nombreUsuario);
             break;
         case 3:
             //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
