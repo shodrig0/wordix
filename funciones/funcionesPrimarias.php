@@ -15,21 +15,24 @@ function juegoPalabraElegida($coleccionPalabras, $numeroDePalabra)
         echo "Ahora elige un número: ";
         $numeroElegido = trim(fgets(STDIN));
         $cantPalabrasUtilizadas = count($numeroDePalabra);
-        $palabraDisponible = true;
+        $palabraDisponible = false;
 
         for ($i = 0; $i < $cantPalabrasUtilizadas; $i++) {
-            if ($numeroElegido != $numeroDePalabra[$i]) {
-                $palabraDisponible = false;
+            if ($numeroElegido == $numeroDePalabra[$i]) {
+                $palabraDisponible = true;
             }
         }
-        if (!$palabraDisponible) {
+        if ($palabraDisponible) {
             echo "Ups, ese número ya lo utilizaste! Intenta con otro.\n";
         }
-    } while (!$palabraDisponible);
+    } while ($palabraDisponible);
 
-    $palabraSeleccionada = $coleccionPalabras[$numeroElegido];
+    $palabraSeleccionada = $coleccionPalabras[$numeroElegido - 1];
 
-    $partida = jugarWordix($palabraSeleccionada, strtolower("$nombreJugador"));
+    $partida = jugarWordix($palabraSeleccionada, strtolower($nombreJugador));
 
     return $partida;
 }
+
+/* Ahora mismo el juego me retorna una primera letra elegida luego de repetir el bucle, pero no toma el resto de letras.
+*/
