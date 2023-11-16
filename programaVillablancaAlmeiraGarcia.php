@@ -1,18 +1,10 @@
 <?php
-
 include_once("wordix.php");
 include_once("datosPrecargados.php");
+include_once("./menu/opciones.php");
+include_once("./funciones/funcionesPrimarias.php");
+// MODULARIZAR MENU
 
-
-/**************************************/
-/***** DATOS DE LOS INTEGRANTES *******/
-/**************************************/
-
-/* Apellido, Nombre. Legajo. Carrera. mail. Usuario Github */
-/* ****COMPLETAR***** */
-/*  Villablanca Rodrigo/ Legajo FAI-5097 / email: rodrialvillablanca@gmail.com / Github: shodrig0
-    Garcia Romero Paola Fernanda/ Legajo FAI-4387 / email: paolagarcianqn@gmail.com / Github: PaoGarciaRF
-    Almeira Ilel Luciana/ Legajo FAI-4914 / email: ilelalmeira@gmail.com / Github: ilelalmeira
 
 /**************************************/
 /***** DEFINICION DE FUNCIONES ********/
@@ -50,32 +42,39 @@ function cargarColeccionPalabras()
 
 //Proceso:
 
-$partida = jugarWordix("MELON", strtolower("MaJo"));
+//$partida = jugarWordix("MELON", strtolower("MaJo"));
 //print_r($partida);
 //imprimirResultado($partida);
 
+$coleccionPalabrasPrecargadas = cargarColeccionPalabras();
+$coleccionPartidasJugadas = cargarPartidasPrecargadas();
+$palabrasUtilizadas = []; //para hacer un count con foreach y asignale indice
 
-
-/*
 do {
-    $opcion = ...;
-
-    
+    echo imprimirMenu();
+    echo "Ingrese una opción: ";
+    $opcion = trim(fgets(STDIN));
+    $juegoPartida = false;
+    if ($opcion >= 1 || $opcion <= 8) {
+        $juegoPartida = true; // si es una de esas opciones, el juego inicia.
+    }
     switch ($opcion) {
-        case 1: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 1
+        case 1:
+            $partida = juegoPalabraElegida($coleccionPalabrasPrecargadas, $palabrasUtilizadas);
+            $coleccionPalabrasPrecargadas = $partida;
+            $coleccionPalabrasPrecargadas = $partida["palabraWordix"];
+            $palabrasUtilizadas[] = $palabrasUtilizadas;
 
             break;
-        case 2: 
+        case 2:
             //completar qué secuencia de pasos ejecutar si el usuario elige la opción 2
 
             break;
-        case 3: 
+        case 3:
             //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
 
             break;
-        
+
             //...
     }
-} while ($opcion != X);
-*/
+} while ($opcion != 8);
