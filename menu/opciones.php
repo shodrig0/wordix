@@ -4,7 +4,9 @@ include_once("wordix.php");
 
 // ACÁ SOLO SIRVE PARA IMPRIMIR EL MENÚ, PARA NO MOSTRAR DICHA FUNCIÓN EN EL PROGRAMA PRINCIPAL. LAS FUNCIONES QUE SE CREEN DEBEN HACERSE EN EL ARCHIVO DE funcionesPrimarias.php
 
-/* Opcion 1 */
+/**
+ * FUNCIÓN 3
+ */
 
 function imprimirMenu()
 {
