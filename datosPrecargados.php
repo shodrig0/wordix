@@ -42,3 +42,19 @@ $jugadorDatosPrecargados[] = [
     "intento5" => 0,
     "intento6" => 0
 ];
+
+/**
+ * Obtiene una colección de palabras
+ * @return array
+ */
+function cargarColeccionPalabras()
+{
+    $coleccionPalabras = [
+        "MUJER", "QUESO", "FUEGO", "CASAS", "RASGO",
+        "GATOS", "GOTAS", "HUEVO", "TINTO", "NAVES",
+        "VERDE", "MELON", "YUYOS", "PIANO", "PISOS",
+        "BOTAS", "REINA", "TIGRE", "TRONO", "DAMAS"
+    ];
+
+    return ($coleccionPalabras);
+}

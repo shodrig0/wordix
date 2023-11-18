@@ -10,25 +10,6 @@ include_once("./funciones/funcionesPrimarias.php");
 /***** DEFINICION DE FUNCIONES ********/
 /**************************************/
 
-/**
- * Obtiene una colección de palabras
- * @return array
- */
-function cargarColeccionPalabras()
-{
-    $coleccionPalabras = [
-        "MUJER", "QUESO", "FUEGO", "CASAS", "RASGO",
-        "GATOS", "GOTAS", "HUEVO", "TINTO", "NAVES",
-        "VERDE", "MELON", "YUYOS", "PIANO", "PISOS",
-        "BOTAS", "REINA", "TIGRE", "TRONO", "DAMAS"
-    ];
-
-    return ($coleccionPalabras);
-}
-
-/* ****COMPLETAR***** */
-
-
 
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
@@ -39,16 +20,10 @@ function cargarColeccionPalabras()
 
 //Inicialización de variables:
 
-
-//Proceso:
-
-//$partida = jugarWordix("MELON", strtolower("MaJo"));
-//print_r($partida);
-//imprimirResultado($partida);
-
 $coleccionPalabrasPrecargadas = cargarColeccionPalabras();
 $coleccionPartidasJugadas = cargarPartidasPrecargadas();
-$palabrasUtilizadas = []; //para hacer un count con foreach y asignale indice
+
+//Proceso:
 
 do {
     echo imprimirMenu();
@@ -67,8 +42,8 @@ do {
 
             break;
         case 2:
-            $nro = random_int (0, count($coleccionPalabrasPrecargadas));
-            $indice = $coleccionPalabrasPrecargadas [$nro];
+            $nro = random_int(0, count($coleccionPalabrasPrecargadas));
+            $indice = $coleccionPalabrasPrecargadas[$nro];
             $partidaActual = jugarWordix($indice, $nombreUsuario);
             break;
         case 3:
