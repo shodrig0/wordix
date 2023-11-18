@@ -81,10 +81,9 @@ function verificarPalabra($nombreJugador, $coleccionPartidasPrecargadas, $colecc
             if ($coleccionPalabras[$indicePalabra] == $coleccionPartidasPrecargadas[$conteo]["palabraWordix"]) {
                 $palabraAJugar = true;
             }
-        } else {
-            $conteo += 1;
         }
-        echo "hola";
+        $conteo += 1;
     }
+
     return $palabraAJugar;
 }
