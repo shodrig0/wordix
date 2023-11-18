@@ -3,7 +3,19 @@
 include_once("wordix.php");
 include_once("programaVillablancaAlmeiraGarcia.php");
 
-/* Acá van a ir las funciones primarias
+/* Acá van a ir las funciones primarias 
+Acá van a ir las funciones primarias
+CREO QUE SON LAS NECESARIAS QUE FALTAN: 
+- calcularPuntos();
+- cargarPartidasPrecargadas();
+- jugarPalabraRandom();
+- buscarPartidaPrecargada();
+- primeraPartidaGanada();
+- jugadorEstadisticas();
+- comparacionDeValores();
+- partidasOrdenadasLista();
+- ordenAlfabeticoPorJugador() y otra ordenAlfabeticoPorPalabra()???;
+- AGREGAR MÁS SEGÚN LAS NECESIDADES
 */
 
 function juegoPalabraElegida($coleccionPalabras, $numeroDePalabra)
