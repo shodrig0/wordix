@@ -3,12 +3,37 @@
 /** Estructura de datos.
  *  Necesaria para los datos precargados.
  */
+
+
+/** 
+ * FUNCIÓN NÚMERO 1
+ */
+
+/**
+ * Obtiene una colección de palabras
+ * @return array
+ */
+function cargarColeccionPalabras()
+{
+    $coleccionPalabras = [
+        "MUJER", "QUESO", "FUEGO", "CASAS", "RASGO",
+        "GATOS", "GOTAS", "HUEVO", "TINTO", "NAVES",
+        "VERDE", "MELON", "YUYOS", "PIANO", "PISOS",
+        "BOTAS", "REINA", "TIGRE", "TRONO", "DAMAS"
+    ];
+
+    return ($coleccionPalabras);
+}
+
+
+/*
+FUNCIÓN NUMERO 2 
+*/
 /**
  * @param array $coleccionPartidasPrecargadas
  * @param array $cargarPartidasPrecargadas
  * @return int
  */
-
 function cargarPartidas()
 {
     $coleccionPartidasPrecargadas[0] = ["palabraWordix" => "QUESO", "jugador" => "majo", "intentos" => 0, "puntaje" => 0];
@@ -42,19 +67,3 @@ $jugadorDatosPrecargados[] = [
     "intento5" => 0,
     "intento6" => 0
 ];
-
-/**
- * Obtiene una colección de palabras
- * @return array
- */
-function cargarColeccionPalabras()
-{
-    $coleccionPalabras = [
-        "MUJER", "QUESO", "FUEGO", "CASAS", "RASGO",
-        "GATOS", "GOTAS", "HUEVO", "TINTO", "NAVES",
-        "VERDE", "MELON", "YUYOS", "PIANO", "PISOS",
-        "BOTAS", "REINA", "TIGRE", "TRONO", "DAMAS"
-    ];
-
-    return ($coleccionPalabras);
-}
