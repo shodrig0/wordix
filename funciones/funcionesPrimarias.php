@@ -18,6 +18,28 @@ CREO QUE SON LAS NECESARIAS QUE FALTAN:
 - AGREGAR MÁS SEGÚN LAS NECESIDADES
 */
 
+/**
+ * Función que solicita el nombre del jugador. FUNCIÓN NECESARIA PARA CARGAR DATOS.
+ */
+
+function nombreDelJugador()
+{
+    echo "Hola hola!! Ingresa tu nombre: ";
+    echo "Tu nombre debe comenzar con una letra ^_^";
+    do {
+        $nombreJugador = trim(fgets(STDIN));
+
+        $primeraLetraNombre = $nombreJugador[0]; // Recorro el string empezando desde 0 (primer caracter) para validar que no sea un número el primer caracter del nombre.
+
+        if (!ctype_alpha($primeraLetraNombre)) { //función utilizada de wordix.php para verificar que sólo sean letras.
+            echo "Hmmm, algo está mal. Recuerda que tu nombre debe comenzar con una letra! \(￣︶￣*\)): ";
+        }
+    } while (!ctype_alpha($primeraLetraNombre));
+
+    $nombreJugador = strtolower($nombreJugador); // función reutilizada, dada en el ejemplo de jugar wordix en el prog ppal.
+    return $nombreJugador;
+}
+
 /* function juegoPalabraElegida($coleccionPalabras, $numeroDePalabra)
 {
     echo "Hola hola!! Ingresa tu nombre: ";
