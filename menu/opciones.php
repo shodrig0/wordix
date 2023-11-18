@@ -12,25 +12,3 @@ function imprimirMenu()
 
     return $seleccionarOpcion;
 }
-
-/* Menu punto 3 */
-$coleccionPartidasPrecargadas = [];
-echo "nro: \n";
-$nroIngresado = trim(fgets(STDIN));
-
-while ($nroIngresado > 15) {
-    echo "Ese numero no existe, ingrese de nuevo", "\n", "nro://";
-    $nroIngresado = trim(fgets(STDIN));
-}
-
-$partidas = cargarPartidasPrecargadas();
-echo "************************************************", "\n";
-echo "Partida WORDIX ", $nroIngresado, ": palabra ", $partidas[$nroIngresado]["palabraWordix"], "\n";
-echo "Jugador: ", $partidas[$nroIngresado]["jugador"], "\n";
-echo "Puntaje: ", $partidas[$nroIngresado]["puntaje"], " puntos", "\n";
-
-if ($partidas[$nroIngresado]["puntaje"] > 0) {
-    echo "Intento: Adivino la palabra en ", $partidas[$nroIngresado]["intentos"], " ", "intentos", "\n";
-} elseif ($partidas[$nroIngresado]["puntaje"] <= 0) {
-    echo "Intento: No adivino la palabra", "\n", "************************************************", "\n";
-}
