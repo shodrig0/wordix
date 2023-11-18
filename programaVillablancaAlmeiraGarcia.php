@@ -68,6 +68,10 @@ do {
 
             break;
 
-            //...
+        case 8:
+
+            $juegoPartida = true;
     }
 } while (!$juegoPartida);
+
+echo "fin juego, nos vemos pronto!";
