@@ -7,7 +7,6 @@ include_once("programaVillablancaAlmeiraGarcia.php");
 Acá van a ir las funciones primarias
 CREO QUE SON LAS NECESARIAS QUE FALTAN: 
 - calcularPuntos();
-- cargarPartidasPrecargadas();
 - jugarPalabraRandom();
 - buscarPartidaPrecargada();
 - primeraPartidaGanada();
@@ -19,7 +18,8 @@ CREO QUE SON LAS NECESARIAS QUE FALTAN:
 */
 
 /**
- * Función que solicita el nombre del jugador. FUNCIÓN NECESARIA PARA CARGAR DATOS.
+ * Función que solicita el nombre del jugador. FUNCIÓN NECESARIA PARA CARGAR DATOS. 
+ * FUNCIÓN 10
  * @param VACIO
  * @return STRING $nombreJugador
  */
@@ -27,26 +27,25 @@ CREO QUE SON LAS NECESARIAS QUE FALTAN:
 function nombreDelJugador()
 {
     echo "Hola hola!! Ingresa tu nombre: ";
-    echo "Tu nombre debe comenzar con una letra ^_^";
+    echo "El nombre debe comenzar con una letra ^_^";
     do {
         $nombreJugador = trim(fgets(STDIN));
 
         $primeraLetraNombre = $nombreJugador[0]; // Recorro el string empezando desde 0 (primer caracter) para validar que no sea un número el primer caracter del nombre.
 
-        if (!ctype_alpha($primeraLetraNombre)) { //función utilizada de wordix.php para verificar que sólo sean letras.
-            echo "Hmmm, algo está mal. Recuerda que tu nombre debe comenzar con una letra! \(￣︶￣*\)): ";
+        if (!ctype_alpha($primeraLetraNombre)) { // Función utilizada de wordix.php para verificar que sólo sean letras.
+            echo "Hmmm, algo está mal. Recuerda que el nombre debe comenzar con una letra! \(￣︶￣*\)): ";
         }
     } while (!ctype_alpha($primeraLetraNombre));
 
-    $nombreJugador = strtolower($nombreJugador); // función reutilizada, dada en el ejemplo de jugar wordix en el prog ppal.
+    $nombreJugador = strtolower($nombreJugador); // Función reutilizada que convierte un string en minusculas. Dada en el ejemplo de jugar wordix en el prog ppal.
     return $nombreJugador;
 }
 
+
+
 /* function juegoPalabraElegida($coleccionPalabras, $numeroDePalabra)
 {
-    echo "Hola hola!! Ingresa tu nombre: ";
-    $nombreJugador = trim(fgets(STDIN));
-
     do {
         echo "Ahora elige un número: ";
         $numeroElegido = trim(fgets(STDIN));
