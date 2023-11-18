@@ -2,9 +2,9 @@
 
 include_once("wordix.php");
 include_once("programaVillablancaAlmeiraGarcia.php");
+include_once("datosPrecargados.php");
 
 /* Acá van a ir las funciones primarias 
-Acá van a ir las funciones primarias
 CREO QUE SON LAS NECESARIAS QUE FALTAN: 
 - calcularPuntos();
 - jugarPalabraRandom();
@@ -42,24 +42,18 @@ function nombreDelJugador()
     return $nombreJugador;
 }
 
+// OPCIÓN 1 MENÚ
 
-
-/* function juegoPalabraElegida($coleccionPalabras, $numeroDePalabra)
+function juegoPalabraElegida($coleccionPalabras, $coleccionPartidasPrecargadas, $nombreJugador)
 {
+    $palabraDisponible = false;
+    $cantPalabrasUtilizadas = count($coleccionPalabras);
+    echo "Ahora elige un número de 1 hasta $cantPalabrasUtilizadas: ";
     do {
-        echo "Ahora elige un número: ";
-        $numeroElegido = trim(fgets(STDIN));
-        $cantPalabrasUtilizadas = count($numeroDePalabra);
-        $palabraDisponible = false;
-
-        for ($i = 0; $i < $cantPalabrasUtilizadas; $i++) {
-            if ($numeroElegido == $numeroDePalabra[$i]) {
-                $palabraDisponible = true;
-            }
-        }
-        if ($palabraDisponible) {
-            echo "Ups, ese número ya lo utilizaste! Intenta con otro.\n";
-        }
+        $numeroElegido = solicitarNumeroEntre(1, $cantPalabrasUtilizadas);
+        $indice = $numeroElegido - 1;
+        $palabraAJugar = $coleccionPalabras[$indice];
+        // FALTA VERIFICAR QUE NO JUEGUE SIEMPRE LA MISMA PALABRA
     } while ($palabraDisponible);
 
     //$palabraSeleccionada = $coleccionPalabras[$numeroElegido - 1];
@@ -68,7 +62,6 @@ function nombreDelJugador()
 
     return $partida;
 }
-*/
 
 /* Ahora mismo el juego me retorna una primera letra elegida luego de repetir el bucle, pero no toma el resto de letras.
 */
