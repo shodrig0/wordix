@@ -53,12 +53,16 @@ function juegoPalabraElegida($coleccionPalabras, $coleccionPartidasPrecargadas, 
         $numeroElegido = solicitarNumeroEntre(1, $cantPalabrasUtilizadas);
         $indice = $numeroElegido - 1;
         $palabraAJugar = $coleccionPalabras[$indice];
-        // FALTA VERIFICAR QUE NO JUEGUE SIEMPRE LA MISMA PALABRA
+
+        $palabraDisponible = verificarPalabra($nombreJugador, $coleccionPalabras, $coleccionPartidasPrecargadas, $indice);
+        if ($palabraDisponible) {
+            echo "Ups, esa palabra ya fue utilizada!";
+        }
     } while ($palabraDisponible);
 
-    //$palabraSeleccionada = $coleccionPalabras[$numeroElegido - 1];
+    $palabraSeleccionada = $coleccionPalabras[$numeroElegido - 1];
 
-    $partida = jugarWordix($coleccionPalabras[$numeroElegido - 1], strtolower($nombreJugador));
+    $partida = jugarWordix($palabraSeleccionada, strtolower($nombreJugador));
 
     return $partida;
 }
@@ -66,13 +70,14 @@ function juegoPalabraElegida($coleccionPalabras, $coleccionPartidasPrecargadas, 
 /* Ahora mismo el juego me retorna una primera letra elegida luego de repetir el bucle, pero no toma el resto de letras.
 */
 
-function verificarPalabra ($nombreJugador, $coleccionPalabras, $coleccionPartidasPrecargadas, $indicePalabra){
+function verificarPalabra($nombreJugador, $coleccionPalabras, $coleccionPartidasPrecargadas, $indicePalabra)
+{
     $palabraAJugar = false;
     $conteo = 0;
-    $cantidadPartidas = count ($coleccionPartidasPrecargadas);
-    while ($conteo < $cantidadPartidas && !$palabraAJugar){
-        if ($nombreJugador == $coleccionPalabras [$conteo]["jugador"]){
-            if ($coleccionPalabras [$indicePalabra] == $coleccionPalabras [$conteo] ["palabraWordix"]){
+    $cantidadPartidas = count($coleccionPartidasPrecargadas);
+    while ($conteo < $cantidadPartidas && !$palabraAJugar) {
+        if ($nombreJugador == $coleccionPartidasPrecargadas[$conteo]["jugador"]) {
+            if ($coleccionPalabras[$indicePalabra] == $coleccionPartidasPrecargadas[$conteo]["palabraWordix"]) {
                 $palabraAJugar = true;
             }
         }
