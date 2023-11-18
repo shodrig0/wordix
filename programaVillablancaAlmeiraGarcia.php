@@ -34,14 +34,16 @@ do {
     switch ($opcion) {
 
         case 1:
-            $nombreJugador = nombreDelJugador();
-            $palabraParaJugar = juegoPalabraElegida($coleccionPalabrasPrecargadas, $coleccionPartidasJugadas, $nombreJugador);
+            $nombreUsuario = nombreDelJugador();
+            $palabraParaJugar = juegoPalabraElegida($coleccionPalabrasPrecargadas, $coleccionPartidasJugadas, $nombreUsuario);
+            $partida = jugarWordix($palabraParaJugar, $nombreUsuario);
+            $coleccionPartidas[] = $partida;
             break;
 
         case 2:
             $nro = random_int(0, count($coleccionPalabrasPrecargadas));
             $indice = $coleccionPalabrasPrecargadas[$nro];
-            $partidaActual = jugarWordix($indice, $nombreJugador);
+            $partidaActual = jugarWordix($indice, $nombreUsuario);
             break;
         case 3:
             /* Menu punto 3 */

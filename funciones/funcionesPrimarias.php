@@ -29,22 +29,22 @@ function nombreDelJugador()
     echo "Hola hola!! Ingresa tu nombre: " . "\n";
     echo "El nombre debe comenzar con una letra ^_^" . "\n";
     do {
-        $nombreJugador = trim(fgets(STDIN));
+        $nombreUsuario = trim(fgets(STDIN));
 
-        $primeraLetraNombre = $nombreJugador[0]; // Recorro el string empezando desde 0 (primer caracter) para validar que no sea un número el primer caracter del nombre.
+        $primeraLetraNombre = $nombreUsuario[0]; // Recorro el string empezando desde 0 (primer caracter) para validar que no sea un número el primer caracter del nombre.
 
         if (!ctype_alpha($primeraLetraNombre)) { // Función utilizada de wordix.php para verificar que sólo sean letras.
             echo "Hmmm, algo está mal. Recuerda que el nombre debe comenzar con una letra! \(￣︶￣*\)): ";
         }
     } while (!ctype_alpha($primeraLetraNombre));
 
-    $nombreJugador = strtolower($nombreJugador); // Función reutilizada que convierte un string en minusculas. Dada en el ejemplo de jugar wordix en el prog ppal.
-    return $nombreJugador;
+    $nombreUsuario = strtolower($nombreUsuario); // Función reutilizada que convierte un string en minusculas. Dada en el ejemplo de jugar wordix en el prog ppal.
+    return $nombreUsuario;
 }
 
 // OPCIÓN 1 MENÚ
 
-function juegoPalabraElegida($coleccionPalabras, $coleccionPartidasPrecargadas, $nombreJugador)
+function juegoPalabraElegida($coleccionPalabras, $coleccionPartidasPrecargadas, $nombreUsuario)
 {
     $palabraDisponible = false;
     $cantPalabrasUtilizadas = count($coleccionPalabras);
@@ -54,17 +54,17 @@ function juegoPalabraElegida($coleccionPalabras, $coleccionPartidasPrecargadas, 
         $indice = $numeroElegido - 1;
         $palabraAJugar = $coleccionPalabras[$indice];
 
-        $palabraDisponible = verificarPalabra($nombreJugador, $coleccionPartidasPrecargadas, $coleccionPalabras, $indice);
+        $palabraDisponible = verificarPalabra($nombreUsuario, $coleccionPartidasPrecargadas, $coleccionPalabras, $indice);
         if ($palabraDisponible) {
             echo "Ups, esa palabra ya fue utilizada!";
         }
     } while ($palabraDisponible);
 
-    $palabraSeleccionada = $coleccionPalabras[$numeroElegido - 1];
+    //$palabraSeleccionada = $coleccionPalabras[$numeroElegido - 1];
 
-    $partida = jugarWordix($palabraSeleccionada, strtolower($nombreJugador));
+    //$partida = jugarWordix($palabraSeleccionada, strtolower($nombreJugador));
 
-    return $partida;
+    return $palabraAJugar;
 }
 
 /* Ahora mismo el juego me retorna una primera letra elegida luego de repetir el bucle, pero no toma el resto de letras.
