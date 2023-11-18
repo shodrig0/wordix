@@ -34,11 +34,11 @@ do {
     switch ($opcion) {
 
         case 1:
-            $partida = juegoPalabraElegida($coleccionPalabrasPrecargadas, $palabrasUtilizadas);
+            /*$partida = juegoPalabraElegida($coleccionPalabrasPrecargadas, $palabrasUtilizadas);
             $coleccionPalabrasPrecargadas = $partida;
             $coleccionPalabrasPrecargadas = $partida["palabraWordix"];
             $palabrasUtilizadas[] = $palabrasUtilizadas;
-
+            */
             break;
 
         case 2:
@@ -47,7 +47,27 @@ do {
             $partidaActual = jugarWordix($indice, $nombreJugador);
             break;
         case 3:
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
+            /* Menu punto 3 */
+            $coleccionPartidasPrecargadas = [];
+            echo "nro: \n";
+            $nroIngresado = trim(fgets(STDIN));
+
+            while ($nroIngresado > 15) {
+                echo "Ese numero no existe, ingrese de nuevo", "\n", "nro://";
+                $nroIngresado = trim(fgets(STDIN));
+            }
+
+            $partidas = cargarPartidas();
+            echo "************************************************", "\n";
+            echo "Partida WORDIX ", $nroIngresado, ": palabra ", $partidas[$nroIngresado]["palabraWordix"], "\n";
+            echo "Jugador: ", $partidas[$nroIngresado]["jugador"], "\n";
+            echo "Puntaje: ", $partidas[$nroIngresado]["puntaje"], " puntos", "\n";
+
+            if ($partidas[$nroIngresado]["puntaje"] > 0) {
+                echo "Intento: Adivino la palabra en ", $partidas[$nroIngresado]["intentos"], " ", "intentos", "\n";
+            } elseif ($partidas[$nroIngresado]["puntaje"] <= 0) {
+                echo "Intento: No adivino la palabra", "\n", "************************************************", "\n";
+            }
 
             break;
 
