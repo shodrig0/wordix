@@ -34,11 +34,8 @@ do {
     switch ($opcion) {
 
         case 1:
-            /*$partida = juegoPalabraElegida($coleccionPalabrasPrecargadas, $palabrasUtilizadas);
-            $coleccionPalabrasPrecargadas = $partida;
-            $coleccionPalabrasPrecargadas = $partida["palabraWordix"];
-            $palabrasUtilizadas[] = $palabrasUtilizadas;
-            */
+            $nombreJugador = nombreDelJugador();
+            $palabraParaJugar = juegoPalabraElegida($coleccionPalabrasPrecargadas, $coleccionPartidasJugadas, $nombreJugador);
             break;
 
         case 2:

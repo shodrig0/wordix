@@ -26,8 +26,8 @@ CREO QUE SON LAS NECESARIAS QUE FALTAN:
 
 function nombreDelJugador()
 {
-    echo "Hola hola!! Ingresa tu nombre: ";
-    echo "El nombre debe comenzar con una letra ^_^";
+    echo "Hola hola!! Ingresa tu nombre: " . "\n";
+    echo "El nombre debe comenzar con una letra ^_^" . "\n";
     do {
         $nombreJugador = trim(fgets(STDIN));
 
