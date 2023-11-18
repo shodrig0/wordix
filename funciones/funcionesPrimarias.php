@@ -18,7 +18,7 @@ CREO QUE SON LAS NECESARIAS QUE FALTAN:
 - AGREGAR MÁS SEGÚN LAS NECESIDADES
 */
 
-function juegoPalabraElegida($coleccionPalabras, $numeroDePalabra)
+/* function juegoPalabraElegida($coleccionPalabras, $numeroDePalabra)
 {
     echo "Hola hola!! Ingresa tu nombre: ";
     $nombreJugador = trim(fgets(STDIN));
@@ -45,6 +45,7 @@ function juegoPalabraElegida($coleccionPalabras, $numeroDePalabra)
 
     return $partida;
 }
+*/
 
 /* Ahora mismo el juego me retorna una primera letra elegida luego de repetir el bucle, pero no toma el resto de letras.
 */
