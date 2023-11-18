@@ -35,9 +35,13 @@ do {
 
         case 1:
             $nombreUsuario = nombreDelJugador();
-            $palabraParaJugar = juegoPalabraElegida($coleccionPalabrasPrecargadas, $coleccionPartidasJugadas, $nombreUsuario);
-            $partida = jugarWordix($palabraParaJugar, $nombreUsuario);
-            $coleccionPartidas[] = $partida;
+
+            $partida = juegoPalabraElegida($coleccionPalabrasPrecargadas, $coleccionPartidasJugadas, $nombreUsuario);
+
+            $coleccionPartidasJugadas[] = $partida;
+
+            print_r($coleccionPartidasJugadas);
+
             break;
 
         case 2:

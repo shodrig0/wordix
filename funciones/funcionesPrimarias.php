@@ -54,17 +54,17 @@ function juegoPalabraElegida($coleccionPalabras, $coleccionPartidasPrecargadas, 
         $indice = $numeroElegido - 1;
         $palabraAJugar = $coleccionPalabras[$indice];
 
+        echo "hola";
         $palabraDisponible = verificarPalabra($nombreUsuario, $coleccionPartidasPrecargadas, $coleccionPalabras, $indice);
+        echo $palabraDisponible;
         if ($palabraDisponible) {
-            echo "Ups, esa palabra ya fue utilizada!";
+            echo "Ups, esa palabra ya fue utilizada!: ";
         }
     } while ($palabraDisponible);
 
-    //$palabraSeleccionada = $coleccionPalabras[$numeroElegido - 1];
+    $partida = jugarWordix($palabraAJugar, $nombreUsuario);
 
-    //$partida = jugarWordix($palabraSeleccionada, strtolower($nombreJugador));
-
-    return $palabraAJugar;
+    return $partida;
 }
 
 /* Ahora mismo el juego me retorna una primera letra elegida luego de repetir el bucle, pero no toma el resto de letras.
@@ -75,13 +75,16 @@ function verificarPalabra($nombreJugador, $coleccionPartidasPrecargadas, $colecc
     $palabraAJugar = false;
     $conteo = 0;
     $cantidadPartidas = count($coleccionPartidasPrecargadas);
+
     while ($conteo < $cantidadPartidas && !$palabraAJugar) {
         if ($nombreJugador == $coleccionPartidasPrecargadas[$conteo]["jugador"]) {
             if ($coleccionPalabras[$indicePalabra] == $coleccionPartidasPrecargadas[$conteo]["palabraWordix"]) {
                 $palabraAJugar = true;
             }
+        } else {
+            $conteo += 1;
         }
-        $conteo += 1;
+        echo "hola";
     }
     return $palabraAJugar;
 }
