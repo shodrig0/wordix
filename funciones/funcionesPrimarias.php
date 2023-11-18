@@ -54,7 +54,7 @@ function juegoPalabraElegida($coleccionPalabras, $coleccionPartidasPrecargadas, 
         $indice = $numeroElegido - 1;
         $palabraAJugar = $coleccionPalabras[$indice];
 
-        $palabraDisponible = verificarPalabra($nombreJugador, $coleccionPalabras, $coleccionPartidasPrecargadas, $indice);
+        $palabraDisponible = verificarPalabra($nombreJugador, $coleccionPartidasPrecargadas, $coleccionPalabras, $indice);
         if ($palabraDisponible) {
             echo "Ups, esa palabra ya fue utilizada!";
         }
@@ -70,7 +70,7 @@ function juegoPalabraElegida($coleccionPalabras, $coleccionPartidasPrecargadas, 
 /* Ahora mismo el juego me retorna una primera letra elegida luego de repetir el bucle, pero no toma el resto de letras.
 */
 
-function verificarPalabra($nombreJugador, $coleccionPalabras, $coleccionPartidasPrecargadas, $indicePalabra)
+function verificarPalabra($nombreJugador, $coleccionPartidasPrecargadas, $coleccionPalabras, $indicePalabra)
 {
     $palabraAJugar = false;
     $conteo = 0;

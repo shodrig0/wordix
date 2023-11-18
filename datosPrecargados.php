@@ -36,7 +36,7 @@ FUNCIÓN NUMERO 2
  */
 function cargarPartidas()
 {
-    //$coleccionPartidasPrecargadas[] = [];
+    $coleccionPartidasPrecargadas[] = [];
     $coleccionPartidasPrecargadas[0] = ["palabraWordix" => "QUESO", "jugador" => "majo", "intentos" => 0, "puntaje" => 0];
     $coleccionPartidasPrecargadas[1] = ["palabraWordix" => "TRONO", "jugador" => "shodrig0", "intentos" => 3, "puntaje" => 15];
     $coleccionPartidasPrecargadas[2] = ["palabraWordix" => "BOTAS", "jugador" => "il3l", "intentos" => 4, "puntaje" => 13];
