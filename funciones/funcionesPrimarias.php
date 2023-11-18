@@ -20,6 +20,8 @@ CREO QUE SON LAS NECESARIAS QUE FALTAN:
 
 /**
  * Función que solicita el nombre del jugador. FUNCIÓN NECESARIA PARA CARGAR DATOS.
+ * @param VACIO
+ * @return STRING $nombreJugador
  */
 
 function nombreDelJugador()
