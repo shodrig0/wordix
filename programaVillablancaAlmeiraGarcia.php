@@ -22,18 +22,17 @@ include_once("./funciones/funcionesPrimarias.php");
 
 $coleccionPalabrasPrecargadas = cargarColeccionPalabras();
 $coleccionPartidasJugadas = cargarPartidasPrecargadas();
+$juegoPartida = false;
 
 //Proceso:
 
 do {
     echo imprimirMenu();
     echo "Ingrese una opción: ";
-    $opcion = trim(fgets(STDIN));
-    $juegoPartida = false;
-    if ($opcion >= 1 || $opcion <= 8) {
-        $juegoPartida = true; // si es una de esas opciones, el juego inicia.
-    }
+    $opcion = solicitarNumeroEntre(1, 8);
+
     switch ($opcion) {
+
         case 1:
             $partida = juegoPalabraElegida($coleccionPalabrasPrecargadas, $palabrasUtilizadas);
             $coleccionPalabrasPrecargadas = $partida;
@@ -41,6 +40,7 @@ do {
             $palabrasUtilizadas[] = $palabrasUtilizadas;
 
             break;
+
         case 2:
             $nro = random_int(0, count($coleccionPalabrasPrecargadas));
             $indice = $coleccionPalabrasPrecargadas[$nro];
@@ -53,4 +53,4 @@ do {
 
             //...
     }
-} while ($opcion != 8);
+} while (!$juegoPartida);
