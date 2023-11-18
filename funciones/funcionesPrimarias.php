@@ -28,6 +28,8 @@ function nombreDelJugador()
 {
     echo "Hola hola!! Ingresa tu nombre: " . "\n";
     echo "El nombre debe comenzar con una letra ^_^" . "\n";
+    $nombreUsuario = "";
+    $primeraLetraNombre = "";
     do {
         $nombreUsuario = trim(fgets(STDIN));
 
