@@ -65,3 +65,18 @@ function juegoPalabraElegida($coleccionPalabras, $coleccionPartidasPrecargadas, 
 
 /* Ahora mismo el juego me retorna una primera letra elegida luego de repetir el bucle, pero no toma el resto de letras.
 */
+
+function verificarPalabra ($nombreJugador, $coleccionPalabras, $coleccionPartidasPrecargadas, $indicePalabra){
+    $palabraAJugar = false;
+    $conteo = 0;
+    $cantidadPartidas = count ($coleccionPartidasPrecargadas);
+    while ($conteo < $cantidadPartidas && !$palabraAJugar){
+        if ($nombreJugador == $coleccionPalabras [$conteo]["jugador"]){
+            if ($coleccionPalabras [$indicePalabra] == $coleccionPalabras [$conteo] ["palabraWordix"]){
+                $palabraAJugar = true;
+            }
+        }
+        $conteo += 1;
+    }
+    return $palabraAJugar;
+}
