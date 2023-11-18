@@ -21,7 +21,7 @@ include_once("./funciones/funcionesPrimarias.php");
 //Inicialización de variables:
 
 $coleccionPalabrasPrecargadas = cargarColeccionPalabras();
-$coleccionPartidasJugadas = cargarPartidasPrecargadas();
+$coleccionPartidasJugadas = cargarPartidas();
 $juegoPartida = false;
 
 //Proceso:
@@ -44,7 +44,7 @@ do {
         case 2:
             $nro = random_int(0, count($coleccionPalabrasPrecargadas));
             $indice = $coleccionPalabrasPrecargadas[$nro];
-            $partidaActual = jugarWordix($indice, $nombreUsuario);
+            $partidaActual = jugarWordix($indice, $nombreJugador);
             break;
         case 3:
             //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3

@@ -9,7 +9,7 @@
  * @return int
  */
 
-function cargarPartidasPrecargadas()
+function cargarPartidas()
 {
     $coleccionPartidasPrecargadas[0] = ["palabraWordix" => "QUESO", "jugador" => "majo", "intentos" => 0, "puntaje" => 0];
     $coleccionPartidasPrecargadas[1] = ["palabraWordix" => "TRONO", "jugador" => "shodrig0", "intentos" => 3, "puntaje" => 15];

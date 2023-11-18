@@ -59,7 +59,7 @@ while ($nroIngresado > 15) {
     $nroIngresado = trim(fgets(STDIN));
 }
 
-$partidas = cargarPartidasPrecargadas();
+$partidas = cargarPartidas();
 echo "************************************************", "\n";
 echo "Partida WORDIX ", $nroIngresado, ": palabra ", $partidas[$nroIngresado]["palabraWordix"], "\n";
 echo "Jugador: ", $partidas[$nroIngresado]["jugador"], "\n";
