@@ -51,27 +51,33 @@ do {
             break;
         case 3:
             /* Menu punto 3 */
-            $coleccionPartidasPrecargadas = [];
-            echo "nro: \n";
+            
+            echo "Ingrese un numero, del cero en adelante, para ver la informacion sobre esa partida: \n";
             $nroIngresado = trim(fgets(STDIN));
+            $limiteDelListado=count($partidas);
+            $partidas = cargarPartidas();
 
-            while ($nroIngresado > 15) {
-                echo "Ese numero no existe, ingrese de nuevo", "\n", "nro://";
+                // FALTA AGREGAR QUE PASA SI INGRESAN UN NUMERO NEGATIVO 
+            while ($nroIngresado > $limiteDelListado) {
+                echo "Ese numero de partida no existe, ingrese un numero nuevamente:", "\n";
                 $nroIngresado = trim(fgets(STDIN));
             }
-
-            $partidas = cargarPartidas();
             echo "************************************************", "\n";
             echo "Partida WORDIX ", $nroIngresado, ": palabra ", $partidas[$nroIngresado]["palabraWordix"], "\n";
             echo "Jugador: ", $partidas[$nroIngresado]["jugador"], "\n";
             echo "Puntaje: ", $partidas[$nroIngresado]["puntaje"], " puntos", "\n";
 
-            if ($partidas[$nroIngresado]["puntaje"] > 0) {
+            if ($partidas[$nroIngresado]["puntaje"] > 0 && $partidas[$nroIngresado]["intentos"]!==1) {
                 echo "Intento: Adivino la palabra en ", $partidas[$nroIngresado]["intentos"], " ", "intentos", "\n";
+                echo "************************************************","\n";
             } elseif ($partidas[$nroIngresado]["puntaje"] <= 0) {
-                echo "Intento: No adivino la palabra", "\n", "************************************************", "\n";
+                echo "Intento: No adivino la palabra", "\n";
+                echo "************************************************","\n";
+           // } elseif($partidas[$nroIngresado]["intentos"] === 1) {
+           //     echo "Intento: Adivino la palabra en ", $partidas[$nroIngresado]["intentos"], " ", "intento", "\n";
+           //     echo "************************************************","\n"; 
+                        //INTENTANDO QUE SI EL INTENTO DE ADIVINAR FUE UNO DIGA INTENTO Y NO INTENTOS.. 
             }
-
             break;
 
         case 8:
