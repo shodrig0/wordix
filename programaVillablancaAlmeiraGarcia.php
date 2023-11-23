@@ -80,6 +80,11 @@ do {
                         //INTENTANDO QUE SI EL INTENTO DE ADIVINAR FUE UNO DIGA INTENTO Y NO INTENTOS.. 
             }
             break;
+        case 5: 
+           echo "Ingrese el nombre de un jugador","\n";
+           $jugador = trim (fgets(STDIN));
+           $partidasJugadas = cantidadDePartidas ($jugador, $coleccionPartidasJugadas);
+           echo $partidasJugadas;
 
         case 7:
             // PUNTO 7 DEL MENU 

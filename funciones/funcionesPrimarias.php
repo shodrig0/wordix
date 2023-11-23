@@ -89,3 +89,14 @@ function verificarPalabra($nombreJugador, $coleccionPartidasPrecargadas, $colecc
 
     return $palabraAJugar;
 }
+
+function cantidadDePartidas ($jugador, $partJugada){
+    $cantPartidas = 0;
+    for ($i = 0; $i < count ($partJugada); $i++){
+        $nombreUsuario = $partJugada [$i]["jugador"];
+        if ($jugador == $nombreUsuario){
+            $cantPartidas += 1;
+        }
+    }
+    return $cantPartidas;
+}
