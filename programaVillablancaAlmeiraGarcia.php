@@ -92,6 +92,21 @@ do {
 
            echo $partidasJugadas;
 
+        case 6:
+            
+            // orden alfabetico de las palabras de la coleccion que se encuentra en datosPrecargados.php
+            $ordenAlfabeticoDePalabras=cargarColeccionPalabras();    
+            uasort($var,'strnatcmp');
+            print_r($var);
+            // orden alfabetico por jugador, usando el lista de datosPrecargados.php
+            $ordenPorJugador=cargarPartidas();
+            for ($indice=0; $indice < count($var); $indice++) { 
+                $nombre=($var[$indice]["jugador"])."\n";
+                //uasort($var,"strcasecm");//me falta la organizacion alfabetica
+                print_r($nombre);
+            }
+
+            break;
         case 7:
             // PUNTO 7 DEL MENU 
 
