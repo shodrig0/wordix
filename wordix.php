@@ -149,7 +149,9 @@ function esPalabra($cadena)
 }
 
 /**
- *  ****COMPLETAR*****
+ * Registra una palabra de cinco letras, ingresada por el usuario, para guardarla en la ooleccion para ser usada en el juego
+ * @param string $palabra 
+ * @return string
  */
 function leerPalabra5Letras()
 {
@@ -157,6 +159,7 @@ function leerPalabra5Letras()
     echo "Ingrese una palabra de 5 letras: ";
     $palabra = trim(fgets(STDIN));
     $palabra  = strtoupper($palabra);
+    //strtoupper convierte un string a mayuscula 
 
     while ((strlen($palabra) != 5) || !esPalabra($palabra)) {
         echo "Debe ingresar una palabra de 5 letras:";

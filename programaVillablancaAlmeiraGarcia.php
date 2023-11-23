@@ -49,6 +49,7 @@ do {
             $indice = $coleccionPalabrasPrecargadas[$nro];
             $partidaActual = jugarWordix($indice, $nombreUsuario);
             break;
+
         case 3:
             /* Menu punto 3 */
             
@@ -86,8 +87,20 @@ do {
            $partGanadas = victorias ($jugador, $coleccionPartidasJugadas);
            $porcentaje = ($partGanadas / $partidasJugadas) * 100;
            $puntajeFinal = puntajeTotal ($jugador, $coleccionPartidasJugadas);
-           echo $puntajeFinal;
+           
            break;
+
+           echo $partidasJugadas;
+
+        case 7:
+            // PUNTO 7 DEL MENU 
+
+            $invocaPalabra=leerPalabra5Letras();
+            echo $invocaPalabra;
+
+            break;
+
+
         case 8:
 
             $juegoPartida = true;
