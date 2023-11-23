@@ -90,6 +90,9 @@ function verificarPalabra($nombreJugador, $coleccionPartidasPrecargadas, $colecc
     return $palabraAJugar;
 }
 
+/**
+ * Funcion para contar la cantidad de partidas realizadas de un jugador
+ */
 function cantidadDePartidas ($jugador, $partJugada){
     $cantPartidas = 0;
     for ($i = 0; $i < count ($partJugada); $i++){
@@ -99,4 +102,30 @@ function cantidadDePartidas ($jugador, $partJugada){
         }
     }
     return $cantPartidas;
+}
+
+/**
+ * Funcion para contar la cantidad de victorias de un jugador
+ */
+function victorias ($jugador, $partJugada){
+    $victorias = 0;
+    for ($i = 0; $i < count ($partJugada); $i++){
+        if ($jugador == $partJugada [$i]["jugador"] && $partJugada [$i]["puntaje"] > 0){
+            $victorias ++;
+        }
+    }
+    return $victorias;
+}
+
+/**
+ * Funcion para calcular el puntaje total de un jugador
+ */
+function puntajeTotal ($jugador, $partJugada){
+    $puntaje = 0;
+    for ($i = 0; $i < count ($partJugada); $i++){
+        if ($jugador == $partJugada [$i]["jugador"]){
+            $puntaje = $puntaje + $partJugada [$i]["puntaje"];
+        }
+    }
+    return $puntaje;
 }

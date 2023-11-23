@@ -83,8 +83,11 @@ do {
            echo "Ingrese el nombre de un jugador","\n";
            $jugador = trim (fgets(STDIN));
            $partidasJugadas = cantidadDePartidas ($jugador, $coleccionPartidasJugadas);
-           echo $partidasJugadas;
-
+           $partGanadas = victorias ($jugador, $coleccionPartidasJugadas);
+           $porcentaje = ($partGanadas / $partidasJugadas) * 100;
+           $puntajeFinal = puntajeTotal ($jugador, $coleccionPartidasJugadas);
+           echo $puntajeFinal;
+           break;
         case 8:
 
             $juegoPartida = true;
