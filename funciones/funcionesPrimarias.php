@@ -7,7 +7,7 @@ include_once("datosPrecargados.php");
 /* Acá van a ir las funciones primarias 
 CREO QUE SON LAS NECESARIAS QUE FALTAN: 
 - calcularPuntos();
-- jugarPalabraRandom();
+- jugarPalabraRandom(); (Lugar donde guardar las palabras random elegidas y palabras prohibidas a usar)
 - buscarPartidaPrecargada();
 - primeraPartidaGanada();
 - jugadorEstadisticas();

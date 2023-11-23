@@ -49,6 +49,7 @@ do {
             $indice = $coleccionPalabrasPrecargadas[$nro];
             $partidaActual = jugarWordix($indice, $nombreUsuario);
             break;
+
         case 3:
             /* Menu punto 3 */
             
@@ -78,6 +79,14 @@ do {
            //     echo "************************************************","\n"; 
                         //INTENTANDO QUE SI EL INTENTO DE ADIVINAR FUE UNO DIGA INTENTO Y NO INTENTOS.. 
             }
+            break;
+
+        case 7:
+            // PUNTO 7 DEL MENU 
+
+            $invocaPalabra=leerPalabra5Letras();
+            echo $invocaPalabra;
+
             break;
 
         case 8:
