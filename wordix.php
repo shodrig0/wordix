@@ -133,16 +133,20 @@ function escribirMensajeBienvenida($usuario)
 
 
 /**
- * ****COMPLETAR*****
+ * Verifica y retorna si la palabra ingresada esta compuesta por letras exclusivamente, si no es asi devuelve false
+ * @param $cadena
+ * @return boolean
  */
 function esPalabra($cadena)
 {
     //int $cantCaracteres, $i, boolean $esLetra
     $cantCaracteres = strlen($cadena);
+    //strlen obtiene la longitud del string, la cantidad de caracteres de la palabra
     $esLetra = true;
     $i = 0;
     while ($esLetra && $i < $cantCaracteres) {
         $esLetra =  ctype_alpha($cadena[$i]);
+        //ctype_alpha verifica que los caracteres ingresados sean letras
         $i++;
     }
     return $esLetra;
