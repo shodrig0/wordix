@@ -161,3 +161,37 @@ function puntajeTotal($jugador, $partJugada)
     }
     return $puntaje;
 }
+
+/**
+ * FUNCION MENU 3 - MOSTRAR PARTIDA
+ * @param int $nroIngresado 
+ * @param int $limiteDelListado
+ * @param string/int $partidas
+ * @return 
+ */
+
+function mostrarPartida($nroIngresado, $limiteDelListado, $partidas)
+{
+    $retornoListado=[];
+    while ($nroIngresado > $limiteDelListado) {
+
+        echo "Ese numero de partida no existe, ingrese un numero nuevamente:", "\n";
+        $nroIngresado = trim(fgets(STDIN));
+    }
+    echo "************************************************", "\n";
+    echo "Partida WORDIX ", $nroIngresado, ": palabra ", $partidas[$nroIngresado]["palabraWordix"], "\n";
+    echo "Jugador: ", $partidas[$nroIngresado]["jugador"], "\n";
+    echo "Puntaje: ", $partidas[$nroIngresado]["puntaje"], " puntos", "\n";
+
+    if ($partidas[$nroIngresado]["puntaje"] > 0 && $partidas[$nroIngresado]["intentos"] !== 1) {
+        echo "Intento: Adivino la palabra en ", $partidas[$nroIngresado]["intentos"], " ", "intentos", "\n";
+        echo "************************************************", "\n";
+    } elseif ($partidas[$nroIngresado]["puntaje"] <= 0) {
+        echo "Intento: No adivino la palabra", "\n";
+        echo "************************************************", "\n";
+    } else {
+        echo "Intento: Adivino la palabra en ", $partidas[$nroIngresado]["intentos"], " ", "intento", "\n";
+        echo "************************************************", "\n";
+    }
+    return $retornoListado;
+}
