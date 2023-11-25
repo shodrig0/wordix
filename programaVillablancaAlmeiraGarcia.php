@@ -35,13 +35,9 @@ do {
 
         case 1:
             $nombreUsuario = nombreDelJugador();
-
             $partida = juegoPalabraElegida($coleccionPalabrasPrecargadas, $coleccionPartidasJugadas, $nombreUsuario);
-
             $coleccionPartidasJugadas[] = $partida;
-
-            print_r($coleccionPartidasJugadas);
-
+            //print_r($coleccionPartidasJugadas);
             break;
 
         case 2:
@@ -52,13 +48,13 @@ do {
 
         case 3:
             /* Menu punto 3 */
-            
+
             echo "Ingrese un numero, del cero en adelante, para ver la informacion sobre esa partida: \n";
             $nroIngresado = trim(fgets(STDIN));
-            $limiteDelListado=count($partidas);
+            $limiteDelListado = count($partidas);
             $partidas = cargarPartidas();
 
-                // FALTA AGREGAR QUE PASA SI INGRESAN UN NUMERO NEGATIVO 
+            // FALTA AGREGAR QUE PASA SI INGRESAN UN NUMERO NEGATIVO 
             while ($nroIngresado > $limiteDelListado) {
                 echo "Ese numero de partida no existe, ingrese un numero nuevamente:", "\n";
                 $nroIngresado = trim(fgets(STDIN));
@@ -68,40 +64,40 @@ do {
             echo "Jugador: ", $partidas[$nroIngresado]["jugador"], "\n";
             echo "Puntaje: ", $partidas[$nroIngresado]["puntaje"], " puntos", "\n";
 
-            if ($partidas[$nroIngresado]["puntaje"] > 0 && $partidas[$nroIngresado]["intentos"]!==1) {
+            if ($partidas[$nroIngresado]["puntaje"] > 0 && $partidas[$nroIngresado]["intentos"] !== 1) {
                 echo "Intento: Adivino la palabra en ", $partidas[$nroIngresado]["intentos"], " ", "intentos", "\n";
-                echo "************************************************","\n";
+                echo "************************************************", "\n";
             } elseif ($partidas[$nroIngresado]["puntaje"] <= 0) {
                 echo "Intento: No adivino la palabra", "\n";
-                echo "************************************************","\n";
-           // } elseif($partidas[$nroIngresado]["intentos"] === 1) {
-           //     echo "Intento: Adivino la palabra en ", $partidas[$nroIngresado]["intentos"], " ", "intento", "\n";
-           //     echo "************************************************","\n"; 
-                        //INTENTANDO QUE SI EL INTENTO DE ADIVINAR FUE UNO DIGA INTENTO Y NO INTENTOS.. 
+                echo "************************************************", "\n";
+                // } elseif($partidas[$nroIngresado]["intentos"] === 1) {
+                //     echo "Intento: Adivino la palabra en ", $partidas[$nroIngresado]["intentos"], " ", "intento", "\n";
+                //     echo "************************************************","\n"; 
+                //INTENTANDO QUE SI EL INTENTO DE ADIVINAR FUE UNO DIGA INTENTO Y NO INTENTOS.. 
             }
             break;
-        case 5: 
-           echo "Ingrese el nombre de un jugador","\n";
-           $jugador = trim (fgets(STDIN));
-           $partidasJugadas = cantidadDePartidas ($jugador, $coleccionPartidasJugadas);
-           $partGanadas = victorias ($jugador, $coleccionPartidasJugadas);
-           $porcentaje = ($partGanadas / $partidasJugadas) * 100;
-           $puntajeFinal = puntajeTotal ($jugador, $coleccionPartidasJugadas);
-           
-           break;
+        case 5:
+            echo "Ingrese el nombre de un jugador", "\n";
+            $jugador = trim(fgets(STDIN));
+            $partidasJugadas = cantidadDePartidas($jugador, $coleccionPartidasJugadas);
+            $partGanadas = victorias($jugador, $coleccionPartidasJugadas);
+            $porcentaje = ($partGanadas / $partidasJugadas) * 100;
+            $puntajeFinal = puntajeTotal($jugador, $coleccionPartidasJugadas);
 
-           echo $partidasJugadas;
+            break;
+
+            echo $partidasJugadas;
 
         case 6:
-            
+
             // orden alfabetico de las palabras de la coleccion que se encuentra en datosPrecargados.php
-            $ordenAlfabeticoDePalabras=cargarColeccionPalabras();    
-            uasort($var,'strnatcmp');
+            $ordenAlfabeticoDePalabras = cargarColeccionPalabras();
+            uasort($var, 'strnatcmp');
             print_r($var);
             // orden alfabetico por jugador, usando el lista de datosPrecargados.php
-            $ordenPorJugador=cargarPartidas();
-            for ($indice=0; $indice < count($var); $indice++) { 
-                $nombre=($var[$indice]["jugador"])."\n";
+            $ordenPorJugador = cargarPartidas();
+            for ($indice = 0; $indice < count($var); $indice++) {
+                $nombre = ($var[$indice]["jugador"]) . "\n";
                 //uasort($var,"strcasecm");//me falta la organizacion alfabetica
                 print_r($nombre);
             }
@@ -110,7 +106,7 @@ do {
         case 7:
             // PUNTO 7 DEL MENU 
 
-            $invocaPalabra=leerPalabra5Letras();
+            $invocaPalabra = leerPalabra5Letras();
             echo $invocaPalabra;
 
             break;

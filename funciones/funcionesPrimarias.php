@@ -74,17 +74,17 @@ function juegoPalabraElegida($coleccionPalabras, $coleccionPartidasPrecargadas, 
 
 function verificarPalabra($nombreJugador, $coleccionPartidasPrecargadas, $coleccionPalabras, $indicePalabra)
 {
-    $palabraAJugar = false;
-    $conteo = 0;
+    $palabraAJugar = false; // Palabra utilizada? No, pues false, indicando que está disponible.
+    $iConteo = 0; //Variable iteradora, necesaria para el conteo en el bucle while. Inicializada en 0 para que coincida con el índice del array.
     $cantidadPartidas = count($coleccionPartidasPrecargadas);
 
-    while ($conteo < $cantidadPartidas && !$palabraAJugar) {
-        if ($nombreJugador == $coleccionPartidasPrecargadas[$conteo]["jugador"]) {
-            if ($coleccionPalabras[$indicePalabra] == $coleccionPartidasPrecargadas[$conteo]["palabraWordix"]) {
+    while ($iConteo < $cantidadPartidas && !$palabraAJugar) { //si el numero que coincide en la variable iteradora es igual indice del registro de partidas jugadas, y cumple con la condición de que la palabra no haya sido utilizada, ingresa al bucle.
+        if ($nombreJugador == $coleccionPartidasPrecargadas[$iConteo]["jugador"]) {
+            if ($coleccionPalabras[$indicePalabra] == $coleccionPartidasPrecargadas[$iConteo]["palabraWordix"]) {
                 $palabraAJugar = true;
             }
         }
-        $conteo += 1;
+        $iConteo += 1; // conteo que se incrementa en cada bucle
     }
 
     return $palabraAJugar;
@@ -93,11 +93,12 @@ function verificarPalabra($nombreJugador, $coleccionPartidasPrecargadas, $colecc
 /**
  * Funcion para contar la cantidad de partidas realizadas de un jugador
  */
-function cantidadDePartidas ($jugador, $partJugada){
+function cantidadDePartidas($jugador, $partJugada)
+{
     $cantPartidas = 0;
-    for ($i = 0; $i < count ($partJugada); $i++){
-        $nombreUsuario = $partJugada [$i]["jugador"];
-        if ($jugador == $nombreUsuario){
+    for ($i = 0; $i < count($partJugada); $i++) {
+        $nombreUsuario = $partJugada[$i]["jugador"];
+        if ($jugador == $nombreUsuario) {
             $cantPartidas += 1;
         }
     }
@@ -107,11 +108,12 @@ function cantidadDePartidas ($jugador, $partJugada){
 /**
  * Funcion para contar la cantidad de victorias de un jugador
  */
-function victorias ($jugador, $partJugada){
+function victorias($jugador, $partJugada)
+{
     $victorias = 0;
-    for ($i = 0; $i < count ($partJugada); $i++){
-        if ($jugador == $partJugada [$i]["jugador"] && $partJugada [$i]["puntaje"] > 0){
-            $victorias ++;
+    for ($i = 0; $i < count($partJugada); $i++) {
+        if ($jugador == $partJugada[$i]["jugador"] && $partJugada[$i]["puntaje"] > 0) {
+            $victorias++;
         }
     }
     return $victorias;
@@ -120,11 +122,12 @@ function victorias ($jugador, $partJugada){
 /**
  * Funcion para calcular el puntaje total de un jugador
  */
-function puntajeTotal ($jugador, $partJugada){
+function puntajeTotal($jugador, $partJugada)
+{
     $puntaje = 0;
-    for ($i = 0; $i < count ($partJugada); $i++){
-        if ($jugador == $partJugada [$i]["jugador"]){
-            $puntaje = $puntaje + $partJugada [$i]["puntaje"];
+    for ($i = 0; $i < count($partJugada); $i++) {
+        if ($jugador == $partJugada[$i]["jugador"]) {
+            $puntaje = $puntaje + $partJugada[$i]["puntaje"];
         }
     }
     return $puntaje;
