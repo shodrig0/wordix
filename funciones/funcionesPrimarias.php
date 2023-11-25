@@ -28,25 +28,25 @@ function nombreDelJugador()
 {
     echo "Hola hola!! Ingresa tu nombre: " . "\n";
     echo "El nombre debe comenzar con una letra ^_^" . "\n";
-    $nombreUsuario = "";
+    $nombreJugador = "";
     $primeraLetraNombre = "";
     do {
-        $nombreUsuario = trim(fgets(STDIN));
+        $nombreJugador = trim(fgets(STDIN));
 
-        $primeraLetraNombre = $nombreUsuario[0]; // Recorro el string empezando desde 0 (primer caracter) para validar que no sea un número el primer caracter del nombre.
+        $primeraLetraNombre = $nombreJugador[0]; // Recorro el string empezando desde 0 (primer caracter) para validar que no sea un número el primer caracter del nombre.
 
         if (!ctype_alpha($primeraLetraNombre)) { // Función utilizada de wordix.php para verificar que sólo sean letras.
             echo "Hmmm, algo está mal. Recuerda que el nombre debe comenzar con una letra! \(￣︶￣*\)): ";
         }
     } while (!ctype_alpha($primeraLetraNombre));
 
-    $nombreUsuario = strtolower($nombreUsuario); // Función reutilizada que convierte un string en minusculas. Dada en el ejemplo de jugar wordix en el prog ppal.
-    return $nombreUsuario;
+    $nombreJugador = strtolower($nombreJugador); // Función reutilizada que convierte un string en minusculas. Dada en el ejemplo de jugar wordix en el prog ppal.
+    return $nombreJugador;
 }
 
 // OPCIÓN 1 MENÚ
 
-function juegoPalabraElegida($coleccionPalabras, $coleccionPartidasPrecargadas, $nombreUsuario)
+function juegoPalabraElegida($coleccionPalabras, $coleccionPartidasPrecargadas, $nombreJugador)
 {
     $palabraDisponible = false;
     $cantPalabrasUtilizadas = count($coleccionPalabras);
@@ -57,14 +57,14 @@ function juegoPalabraElegida($coleccionPalabras, $coleccionPartidasPrecargadas, 
         $palabraAJugar = $coleccionPalabras[$indice];
 
         echo "hola";
-        $palabraDisponible = verificarPalabra($nombreUsuario, $coleccionPartidasPrecargadas, $coleccionPalabras, $indice);
+        $palabraDisponible = verificarPalabra($nombreJugador, $coleccionPartidasPrecargadas, $coleccionPalabras, $indice);
         echo $palabraDisponible;
         if ($palabraDisponible) {
             echo "Ups, esa palabra ya fue utilizada!: ";
         }
     } while ($palabraDisponible);
 
-    $partida = jugarWordix($palabraAJugar, $nombreUsuario);
+    $partida = jugarWordix($palabraAJugar, $nombreJugador);
 
     return $partida;
 }
@@ -84,10 +84,39 @@ function verificarPalabra($nombreJugador, $coleccionPartidasPrecargadas, $colecc
                 $palabraAJugar = true;
             }
         }
-        $iConteo += 1; // conteo que se incrementa en cada bucle
+        $iConteo++; // conteo que se incrementa en cada bucle
     }
 
     return $palabraAJugar;
+}
+
+/**
+ * Función necesaria para el menú, opción 4. Validar si el usuario existe.
+ */
+
+function verificarNombreDelJugador($nombreJugador, $coleccionPartidasPrecargadas)
+{
+    $jugadorBuscado = false;
+    $iConteo = 0;
+    $cantPartidas = count($coleccionPartidasPrecargadas);
+
+    while ($iConteo < $cantPartidas && !$jugadorBuscado) {
+        if ($nombreJugador == $coleccionPartidasPrecargadas[$iConteo]["jugador"]) {
+            $jugadorBuscado = true;
+        } else {
+            echo "El nombre que ingresaste no está registrado! Prueba escribiéndolo otra vez\n";
+            $nombreJugador = nombreDelJugador();
+            $iConteo = 0; // volvemos a inicializar en 0 para que se reinicie el bucle.
+        }
+
+        if ($iConteo < $cantPartidas - 1) {
+            $iConteo++;
+        } else {
+            $iConteo = 0; //volvemos a inicializar en 0 en caso de no encontrar el nombre del jugador.
+        }
+    }
+
+    return $nombreJugador;
 }
 
 /**
@@ -99,7 +128,7 @@ function cantidadDePartidas($jugador, $partJugada)
     for ($i = 0; $i < count($partJugada); $i++) {
         $nombreUsuario = $partJugada[$i]["jugador"];
         if ($jugador == $nombreUsuario) {
-            $cantPartidas += 1;
+            $cantPartidas++;
         }
     }
     return $cantPartidas;
