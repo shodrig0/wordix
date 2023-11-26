@@ -163,35 +163,51 @@ function puntajeTotal($jugador, $partJugada)
 }
 
 /**
- * FUNCION MENU 3 - MOSTRAR PARTIDA
- * @param int $nroIngresado 
- * @param int $limiteDelListado
- * @param string/int $partidas
+ * @param array $coleccionPartidasPrecargadas
  * @return 
+ * 
  */
 
-function mostrarPartida($nroIngresado, $limiteDelListado, $partidas)
+function listaIndicePartida($coleccionPartidasPrecargadas)
 {
-    $retornoListado=[];
-    while ($nroIngresado > $limiteDelListado) {
+    $limiteDelListado = count($coleccionPartidasPrecargadas);
+    echo "Ingrese un numero, entre 0 y ", $limiteDelListado, ", para conocer la informacion sobre esa partida: ","\n";
+    $indicePartidaSolicitada = solicitarNumeroEntre(1, $limiteDelListado); //función de wordix.php reutilizada
+    $indicePartidaSolicitada -= 1; // el array siempre comienza desde 0, por lo que a la variable hay que restarle 1 para que coincida
+    return $indicePartidaSolicitada;
+}
 
-        echo "Ese numero de partida no existe, ingrese un numero nuevamente:", "\n";
-        $nroIngresado = trim(fgets(STDIN));
-    }
-    echo "************************************************", "\n";
-    echo "Partida WORDIX ", $nroIngresado, ": palabra ", $partidas[$nroIngresado]["palabraWordix"], "\n";
-    echo "Jugador: ", $partidas[$nroIngresado]["jugador"], "\n";
-    echo "Puntaje: ", $partidas[$nroIngresado]["puntaje"], " puntos", "\n";
+/**
+ * busqueda y presentacion de inforacion sobre una partida
+ * @param array $coleccionPartidasPrecargadas
+ * @param int $valorIndicePartida
+ * @param return 
+ * 
+ */
 
-    if ($partidas[$nroIngresado]["puntaje"] > 0 && $partidas[$nroIngresado]["intentos"] !== 1) {
-        echo "Intento: Adivino la palabra en ", $partidas[$nroIngresado]["intentos"], " ", "intentos", "\n";
-        echo "************************************************", "\n";
-    } elseif ($partidas[$nroIngresado]["puntaje"] <= 0) {
-        echo "Intento: No adivino la palabra", "\n";
-        echo "************************************************", "\n";
+function imprimirPartida($coleccionPartidasPrecargadas, $valorIndicePartida)
+{
+    //if numero == UN ALGO que retorne el modulo 4
+    //strig $jugador, $palabra, $puntaje, $intentos, $aviso, $valorRealIndice
+    $valorRealIndice = $valorIndicePartida + 1; //El array cuenta desde 0, por ende hay que sumarle un 1 para que coincida el indice real, con el indice a mostrar.
+    $palabra = $coleccionPartidasPrecargadas[$valorIndicePartida]["palabraWordix"];
+    $jugador = $coleccionPartidasPrecargadas[$valorIndicePartida]["jugador"];
+    $puntaje = $coleccionPartidasPrecargadas[$valorIndicePartida]["puntaje"];
+    $intentos = $coleccionPartidasPrecargadas[$valorIndicePartida]["intentos"];
+
+    if ($puntaje > 0) {
+        $aviso = "Adivinó la palabra en " . $intentos . " intento/s";
     } else {
-        echo "Intento: Adivino la palabra en ", $partidas[$nroIngresado]["intentos"], " ", "intento", "\n";
-        echo "************************************************", "\n";
+        $aviso = "No adivinó la palabra";
     }
-    return $retornoListado;
+
+    $partidaMostrada =
+        "\n****************************************************
+    Partida WORDIX $valorRealIndice: palabra $palabra
+    Jugador: $jugador 
+    Puntaje: $puntaje 
+    Intentos: $aviso 
+****************************************************\n";
+
+    return $partidaMostrada;
 }

@@ -50,12 +50,9 @@ do {
             /* Menu punto 3 */
             
             //invocacion de funciones
-            $partidasDeWordix = cargarPartidas();
-            $conteoDeListado = count($partidasDeWordix);
-            //comienzo del menu 3 
-            echo "Ingrese un numero, del 0 al ", $conteoDeListado, ", para ver la informacion sobre esa partida: \n";
-            $nroIngListado = trim(fgets(STDIN));
-            $retornoLista = mostrarPartida($nroIngListado, $conteoDeListado, $partidasDeWordix);
+            $nroIndicePartida = listaIndicePartida($coleccionPartidasJugadas);
+            $imprimirPartida = imprimirPartida($coleccionPartidasJugadas, $nroIndicePartida);
+            echo $imprimirPartida;
 
             break;
 

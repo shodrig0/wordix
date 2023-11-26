@@ -120,7 +120,8 @@ function escribirSegunEstado($texto, $estado)
 }
 
 /**
- * ****COMPLETAR*****
+ * funcion de bienvenida
+ * @param string $usuario
  */
 function escribirMensajeBienvenida($usuario)
 {
