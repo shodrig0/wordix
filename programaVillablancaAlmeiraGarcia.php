@@ -28,7 +28,7 @@ $juegoPartida = false;
 
 do {
     echo imprimirMenu();
-    echo "Ingrese una opción: ";
+    echo "\nIngrese una opción: ";
     $opcion = solicitarNumeroEntre(1, 8);
 
     switch ($opcion) {

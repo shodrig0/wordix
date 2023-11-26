@@ -171,7 +171,7 @@ function puntajeTotal($jugador, $partJugada)
 function listaIndicePartida($coleccionPartidasPrecargadas)
 {
     $limiteDelListado = count($coleccionPartidasPrecargadas);
-    echo "Ingrese un numero, entre 0 y ", $limiteDelListado, ", para conocer la informacion sobre esa partida: ","\n";
+    echo "\nIngrese un numero, entre 0 y ", $limiteDelListado, ", para conocer la informacion sobre esa partida: ","\n";
     $indicePartidaSolicitada = solicitarNumeroEntre(1, $limiteDelListado); //función de wordix.php reutilizada
     $indicePartidaSolicitada -= 1; // el array siempre comienza desde 0, por lo que a la variable hay que restarle 1 para que coincida
     return $indicePartidaSolicitada;
