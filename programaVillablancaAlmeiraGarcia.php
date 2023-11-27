@@ -38,6 +38,7 @@ do {
             $partida = juegoPalabraElegida($coleccionPalabrasPrecargadas, $coleccionPartidasJugadas, $nombreUsuario);
             $coleccionPartidasJugadas[] = $partida;
             //print_r($coleccionPartidasJugadas);
+
             break;
 
         case 2:
@@ -48,7 +49,6 @@ do {
 
         case 3:
             /* Menu punto 3 */
-            
             //invocacion de funciones
             $nroIndicePartida = listaIndicePartida($coleccionPartidasJugadas);
             $imprimirPartida = imprimirPartida($coleccionPartidasJugadas, $nroIndicePartida);
@@ -59,7 +59,11 @@ do {
         case 4:
             $nombreUsuario = nombreDelJugador();
             $nombreUsuario = verificarNombreDelJugador($nombreUsuario, $coleccionPartidasJugadas);
+            $partidaGanada = primeraPartidaGanada($nombreJugador, $coleccionPartidasJugadas); //si hay error, cambiar posicion
+            $imprimirPartida = imprimirPartida($coleccionPartidasJugadas, $partidaGanada);
+            echo $imprimirPartida;
 
+            break;
 
         case 5:
             echo "Ingrese el nombre de un jugador", "\n";
@@ -68,13 +72,11 @@ do {
             $partGanadas = victorias($jugador, $coleccionPartidasJugadas);
             $porcentaje = ($partGanadas / $partidasJugadas) * 100;
             $puntajeFinal = puntajeTotal($jugador, $coleccionPartidasJugadas);
+            echo $partidasJugadas;
 
             break;
 
-            echo $partidasJugadas;
-
         case 6:
-
             // orden alfabetico de las palabras de la coleccion que se encuentra en datosPrecargados.php
             $ordenAlfabeticoDePalabras = cargarColeccionPalabras();
             uasort($var, 'strnatcmp');
@@ -88,14 +90,13 @@ do {
             }
 
             break;
+
         case 7:
-            // PUNTO 7 DEL MENU 
-
-            $invocaPalabra = leerPalabra5Letras();
-            echo $invocaPalabra;
-
+            // PUNTO 7 DEL MENU
+            $palabraNueva = leerPalabra5Letras();
+            $coleccionPalabrasPrecargadas = agregarPalabra($invocaPalabra, $coleccionPalabrasPrecargadas);
+            echo "Listo! Tu palabra ya fue agregada";
             break;
-
 
         case 8:
 

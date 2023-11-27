@@ -44,15 +44,42 @@ function nombreDelJugador()
     return $nombreJugador;
 }
 
+/**
+ * FUNCIÓN 4 O 7 YA NO SÉ ME PERDÍ
+ */
+
+function agregarPalabra($palabraNueva, $coleccionPalabrasP)
+{
+    $palabraExistente = true;
+    $iConteo = 0;
+    $cantPalabrasExistentes = count($coleccionPalabrasP);
+
+    while ($cantPalabrasExistentes > $iConteo && !$palabraExistente) {
+
+        if ($cantPalabrasExistentes[$iConteo] == $palabraNueva) {
+            $palabraExistente = false;
+        }
+        $iConteo++;
+    }
+
+    if ($palabraExistente) {
+        echo "La palabra ya se encuentra en el array :( \n Intenta con otra! \n";
+    } else {
+        $coleccionPalabrasP[] = $palabraNueva;
+    }
+
+    return $coleccionPalabrasP;
+}
+
 // OPCIÓN 1 MENÚ
 
 function juegoPalabraElegida($coleccionPalabras, $coleccionPartidasPrecargadas, $nombreJugador)
 {
-    $palabraDisponible = false;
+    $palabraDisponible = false; // nombre dudoso pero sería determinar que la palabra está válida para jugar
     $cantPalabrasUtilizadas = count($coleccionPalabras);
     echo "Ahora elige un número de 1 hasta $cantPalabrasUtilizadas: ";
     do {
-        $numeroElegido = solicitarNumeroEntre(1, $cantPalabrasUtilizadas);
+        $numeroElegido = solicitarNumeroEntre(1, $cantPalabrasUtilizadas); //función reutilizada de wordix.php
         $indice = $numeroElegido - 1;
         $palabraAJugar = $coleccionPalabras[$indice];
 
@@ -64,13 +91,11 @@ function juegoPalabraElegida($coleccionPalabras, $coleccionPartidasPrecargadas, 
         }
     } while ($palabraDisponible);
 
-    $partida = jugarWordix($palabraAJugar, $nombreJugador);
+    $partida = jugarWordix($palabraAJugar, $nombreJugador); //función de wordix reutilizada
 
     return $partida;
 }
 
-/* Ahora mismo el juego me retorna una primera letra elegida luego de repetir el bucle, pero no toma el resto de letras.
-*/
 
 function verificarPalabra($nombreJugador, $coleccionPartidasPrecargadas, $coleccionPalabras, $indicePalabra)
 {
@@ -97,27 +122,66 @@ function verificarPalabra($nombreJugador, $coleccionPartidasPrecargadas, $colecc
 function verificarNombreDelJugador($nombreJugador, $coleccionPartidasPrecargadas)
 {
     $jugadorBuscado = false;
-    $iConteo = 0;
-    $cantPartidas = count($coleccionPartidasPrecargadas);
 
-    while ($iConteo < $cantPartidas && !$jugadorBuscado) {
-        if ($nombreJugador == $coleccionPartidasPrecargadas[$iConteo]["jugador"]) {
-            $jugadorBuscado = true;
-        } else {
-            echo "El nombre que ingresaste no está registrado! Prueba escribiéndolo otra vez\n";
-            $nombreJugador = nombreDelJugador();
-            $iConteo = 0; // volvemos a inicializar en 0 para que se reinicie el bucle.
+    do {
+        $cantPartidas = count($coleccionPartidasPrecargadas); //VARIABLE USADA PARA WHILE DE SER POSIBLE
+
+        for ($i = 0; $i < $cantPartidas && !$jugadorBuscado; $i++) {
+
+            if ($nombreJugador == $coleccionPartidasPrecargadas[$i]["jugador"]) {
+                $jugadorBuscado = true;
+            }
         }
 
-        if ($iConteo < $cantPartidas - 1) {
-            $iConteo++;
+        if (!$jugadorBuscado) {
+            echo "El nombre ingresaste no está registrado! Prueba escribiéndolo otra vez :) \n";
+            $nombreJugador = trim(fgets(STDIN));
+        }
+    } while (!$jugadorBuscado);
+
+    return $nombreJugador;
+
+    //$iConteo = 0; VARIABLE USADA PARA WHILE
+
+    /**while ($iConteo < $cantPartidas && !$jugadorBuscado) {
+         if ($nombreJugador == $coleccionPartidasPrecargadas[$iConteo]["jugador"]) {
+             $jugadorBuscado = true;
+         } else {
+             echo "El nombre que ingresaste no está registrado! Prueba escribiéndolo otra vez\n";
+             $nombreJugador = nombreDelJugador();
+         }
+         $iConteo++; // incremeta su valor mediante el bucle
+     }
+ 
+     return $nombreJugador;
+     */
+    // SEGUIR PROBANDO CON WHILE, TAL VEZ SEA MEJOR QUE RECORRER TODO EL ARRAY. SIN FIXEAR
+}
+
+/**
+ * Función necesaria para el menú 4.
+ */
+function primeraPartidaGanada($nombreJugador, $coleccionPartidasP) //cambiar despues nombre segundo param
+{
+    $victoria = false;
+    $contPrimeraPartidaGanada = 0;
+    $cantPartidas = count($coleccionPartidasP);
+
+    while ($contPrimeraPartidaGanada < $cantPartidas && !$victoria) { // bucle para ingresar al array y hacer recorrido parcial hasta que coincidan las condiciones
+        if ($nombreJugador == $coleccionPartidasP[$contPrimeraPartidaGanada]["jugador"] && $coleccionPartidasP[$contPrimeraPartidaGanada]["puntaje"] > 0) {
+            $victoria = true; // si el nombre del jugador existe, verificado con la función verificarNombreDelJugador, al momento de que la variable $victoria pase a true, sale del bucle.
         } else {
-            $iConteo = 0; //volvemos a inicializar en 0 en caso de no encontrar el nombre del jugador.
+            $contPrimeraPartidaGanada++; // se incrementa en cada bucle. SINO ARROJA CUALQUIER RESULTADO. PROBAR
         }
     }
 
-    return $nombreJugador;
+    if (!$victoria) {
+        $contPrimeraPartidaGanada = -1;
+    }
+
+    return $contPrimeraPartidaGanada; // retorna el indice del array, utilizado para después mostrarlo en pantalla con la otra función
 }
+
 
 /**
  * Funcion para contar la cantidad de partidas realizadas de un jugador
@@ -171,7 +235,7 @@ function puntajeTotal($jugador, $partJugada)
 function listaIndicePartida($coleccionPartidasPrecargadas)
 {
     $limiteDelListado = count($coleccionPartidasPrecargadas);
-    echo "\nIngrese un numero, entre 0 y ", $limiteDelListado, ", para conocer la informacion sobre esa partida: ","\n";
+    echo "\nIngrese un numero, entre 0 y ", $limiteDelListado, ", para conocer la informacion sobre esa partida: ", "\n";
     $indicePartidaSolicitada = solicitarNumeroEntre(1, $limiteDelListado); //función de wordix.php reutilizada
     $indicePartidaSolicitada -= 1; // el array siempre comienza desde 0, por lo que a la variable hay que restarle 1 para que coincida
     return $indicePartidaSolicitada;
@@ -190,8 +254,8 @@ function imprimirPartida($coleccionPartidasPrecargadas, $valorIndicePartida)
     //if numero == UN ALGO que retorne el modulo 4
     //strig $jugador, $palabra, $puntaje, $intentos, $aviso, $valorRealIndice
     $valorRealIndice = $valorIndicePartida + 1; //El array cuenta desde 0, por ende hay que sumarle un 1 para que coincida el indice real, con el indice a mostrar.
-    $palabra = $coleccionPartidasPrecargadas[$valorIndicePartida]["palabraWordix"];
-    $jugador = $coleccionPartidasPrecargadas[$valorIndicePartida]["jugador"];
+    $palabraWordix = $coleccionPartidasPrecargadas[$valorIndicePartida]["palabraWordix"];
+    $jugadorRegistrado = $coleccionPartidasPrecargadas[$valorIndicePartida]["jugador"];
     $puntaje = $coleccionPartidasPrecargadas[$valorIndicePartida]["puntaje"];
     $intentos = $coleccionPartidasPrecargadas[$valorIndicePartida]["intentos"];
 
@@ -203,8 +267,8 @@ function imprimirPartida($coleccionPartidasPrecargadas, $valorIndicePartida)
 
     $partidaMostrada =
         "\n****************************************************
-    Partida WORDIX $valorRealIndice: palabra $palabra
-    Jugador: $jugador 
+    Partida WORDIX $valorRealIndice: palabra $palabraWordix
+    Jugador: $jugadorRegistrado
     Puntaje: $puntaje 
     Intentos: $aviso 
 ****************************************************\n";
