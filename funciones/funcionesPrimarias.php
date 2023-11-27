@@ -274,6 +274,10 @@ function adivinadas ($jugador, $partJugada){
 // $intento6 = 0;
     for ($i = 0; $i < count ($partJugada); $i ++){
         if ($jugador == $partJugada [$i]["jugador"]){
+
+
+
+            
         switch ($partJugada[$i]["intentos"]){
             case 1:
                 $cantIntentos["intento1"]++;
@@ -303,6 +307,30 @@ function adivinadas ($jugador, $partJugada){
     }
     return $cantIntentos;
 }
+
+// function adivinadas($jugador, $partJugada) {
+//     $cantIntentos = [
+//         "intento1" => 0,
+//         "intento2" => 0,
+//         "intento3" => 0,
+//         "intento4" => 0,
+//         "intento5" => 0,
+//         "intento6" => 0
+//     ];
+
+//     for ($i = 0; $i < count($partJugada); $i++) {
+//         if ($jugador == $partJugada[$i]["jugador"]) {
+//             $intentos = $partJugada[$i]["intentos"];
+            
+//             // Verificamos que el intento esté dentro del rango esperado
+//             if ($intentos >= 1 && $intentos <= 6) {
+//                 $cantIntentos["intento" . $intentos]++;
+//             }
+//         }
+//     }
+
+//     return $cantIntentos;
+// }
 
 /**
  * 
