@@ -94,7 +94,7 @@ do {
         case 7:
             // PUNTO 7 DEL MENU
             $palabraNueva = leerPalabra5Letras();
-            $coleccionPalabrasPrecargadas = agregarPalabra($invocaPalabra, $coleccionPalabrasPrecargadas);
+            $coleccionPalabrasPrecargadas = agregarPalabra($palabraNueva, $coleccionPalabrasPrecargadas);
             echo "Listo! Tu palabra ya fue agregada";
             break;
 

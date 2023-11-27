@@ -26,7 +26,7 @@ CREO QUE SON LAS NECESARIAS QUE FALTAN:
 
 function nombreDelJugador()
 {
-    echo "Hola hola!! Ingresa tu nombre: " . "\n";
+    echo "Veo que has decidido jugar! Entonces ingresa tu nombre: " . "\n";
     echo "El nombre debe comenzar con una letra ^_^" . "\n";
     $nombreJugador = "";
     $primeraLetraNombre = "";
@@ -57,7 +57,7 @@ function agregarPalabra($palabraNueva, $coleccionPalabrasP)
 
     while ($cantPalabrasExistentes > $iConteo && !$palabraExistente) {
 
-        if ($cantPalabrasExistentes[$iConteo] == $palabraNueva) {
+        if ($coleccionPalabrasP[$iConteo] == $palabraNueva) { // NO ES CON EL COUNT DEL ARRAY 
             $palabraExistente = true;
         }
         $iConteo++;
@@ -66,7 +66,7 @@ function agregarPalabra($palabraNueva, $coleccionPalabrasP)
     if (!$palabraExistente) {
         $coleccionPalabrasP[] = $palabraNueva;
     } else {
-        echo "La palabra ya se encuentra en el array :( \n Intenta con otra! \n";
+        echo "La palabra ya se encuentra en la colección :(\nIntenta con otra!\n";
     }
 
     return $coleccionPalabrasP;
@@ -84,7 +84,6 @@ function juegoPalabraElegida($coleccionPalabras, $coleccionPartidasPrecargadas, 
         $indice = $numeroElegido - 1;
         $palabraAJugar = $coleccionPalabras[$indice];
 
-        echo "hola";
         $palabraDisponible = verificarPalabra($nombreJugador, $coleccionPartidasPrecargadas, $coleccionPalabras, $indice);
         echo $palabraDisponible;
         if ($palabraDisponible) {
