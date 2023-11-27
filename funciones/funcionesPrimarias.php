@@ -317,3 +317,46 @@ function adivinadas ($jugador, $partJugada){
     }
     return $cantIntentos;
 }
+
+
+/**
+ * @param string $respuestaJugador
+ * @param string $respuestaPalabra
+ * @return string
+ */
+
+ function alfabeticOrden($respuesta)
+ {
+    // string retorno $orden, invocacion array $cantDeJugadores
+     $orden = "";
+     $cantDeJugadores= cargarPartidas();
+ 
+     while ($respuesta != "palabra" && $respuesta != "jugador") {
+         echo "Upss! Esa opcion no existe!\n";
+         echo "Ingrese 'jugador' o 'palabra': ";
+         $respuesta = trim(fgets(STDIN));
+     };
+ 
+     if ($respuesta == "jugador") {
+         // orden alfabetico de los jugadores de la coleccion que se encuentra en datosPrecargados.php
+         
+         for ($indice = 0; $indice < Count($cantDeJugadores); $indice++) {
+                                            // sigo en busqueda de ese error .. 
+             $ordenAlfabeticoPorJugador = ($cantDeJugadores[$indice]["jugador"]) . "\n";
+             //me falta la organizacion alfabetica
+             //uasort($cantDeJugadores(), '');
+             $orden = print_r($ordenAlfabeticoPorJugador);
+         }
+     } elseif ($respuesta == "palabra") {
+         // orden alfabetico de las palabras de la coleccion que se encuentra en datosPrecargados.php
+ 
+         $ordenAlfabeticoDePalabras = cargarColeccionPalabras();
+         // SACAMOS INDICES NUMERICOS?? 
+ 
+         uasort($ordenAlfabeticoDePalabras, 'strcmp');
+         $orden = print_r($ordenAlfabeticoDePalabras);
+     }
+ 
+     return $orden;
+ }
+
