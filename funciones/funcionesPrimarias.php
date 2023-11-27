@@ -122,40 +122,17 @@ function verificarPalabra($nombreJugador, $coleccionPartidasPrecargadas, $colecc
 function verificarNombreDelJugador($nombreJugador, $coleccionPartidasPrecargadas)
 {
     $jugadorBuscado = false;
+    $iConteo = 0;
+    $cantPartidas = count($coleccionPartidasPrecargadas);
 
-    do {
-        $cantPartidas = count($coleccionPartidasPrecargadas); //VARIABLE USADA PARA WHILE DE SER POSIBLE
-
-        for ($i = 0; $i < $cantPartidas && !$jugadorBuscado; $i++) {
-
-            if ($nombreJugador == $coleccionPartidasPrecargadas[$i]["jugador"]) {
-                $jugadorBuscado = true;
-            }
-        }
-
-        if (!$jugadorBuscado) {
-            echo "El nombre ingresaste no está registrado! Prueba escribiéndolo otra vez :) \n";
-            $nombreJugador = trim(fgets(STDIN));
-        }
-    } while (!$jugadorBuscado);
-
-    return $nombreJugador;
-
-    //$iConteo = 0; VARIABLE USADA PARA WHILE
-
-    /**while ($iConteo < $cantPartidas && !$jugadorBuscado) {
+    while ($iConteo < $cantPartidas && !$jugadorBuscado) {
          if ($nombreJugador == $coleccionPartidasPrecargadas[$iConteo]["jugador"]) {
              $jugadorBuscado = true;
-         } else {
-             echo "El nombre que ingresaste no está registrado! Prueba escribiéndolo otra vez\n";
-             $nombreJugador = nombreDelJugador();
          }
          $iConteo++; // incremeta su valor mediante el bucle
      }
  
      return $nombreJugador;
-     */
-    // SEGUIR PROBANDO CON WHILE, TAL VEZ SEA MEJOR QUE RECORRER TODO EL ARRAY. SIN FIXEAR
 }
 
 /**
