@@ -256,43 +256,54 @@ function imprimirPartida($coleccionPartidasPrecargadas, $valorIndicePartida)
 /**
  * Funcion para mostrar los intentos
  */
-function adivinadas($jugador, $partJugada)
-{
-    $cantIntentos = [];
-    $intento1 = 0;
-    $intento2 = 0;
-    $intento3 = 0;
-    $intento4 = 0;
-    $intento5 = 0;
-    $intento6 = 0;
-    for ($i = 0; $i < count($partJugada); $i++) {
-        if ($jugador == $partJugada[$i]["jugador"]) {
-            switch ($partJugada[$i]["intentos"]) {
-                case 1:
-                    $cantIntentos[0] = ($intento1 = $intento1 + 1);
-                    break;
+function adivinadas ($jugador, $partJugada){
+    $jugadorDatosPrecargados[] = [
+        "jugador" => "",
+        "partidas" => 0,
+        "puntaje" => 0,
+        "victorias" => 0,
+        "intento1" => 0,
+        "intento2" => 0,
+        "intento3" => 0,
+        "intento4" => 0,
+        "intento5" => 0,
+        "intento6" => 0
+    ];
+    
+$intento1 = 0;
+$intento2 = 0;
+$intento3 = 0;
+$intento4 = 0;
+$intento5 = 0;
+$intento6 = 0;
+    for ($i = 0; $i < count ($partJugada); $i ++){
+        if ($jugador == $partJugada [$i]["jugador"]){
+        switch ($partJugada[$i]["intentos"]){
+            case 1:
+                $cantIntentos ["intento1"]= ($intento1 += 1);
+                break;
 
-                case 2:
-                    $cantIntentos[1] = ($intento2 = $intento2 + 1);
-                    break;
+            case 2:
+                $cantIntentos ["intento2"]= ($intento2 += 1);
+                break;
 
-                case 3:
-                    $cantIntentos[2] = ($intento3 = $intento3 + 1);
-                    break;
+            case 3:
+                $cantIntentos ["intento3"]= ($intento3 += 1);
+                break;
 
-                case 4:
-                    $cantIntentos[3] = ($intento4 = $intento4 + 1);
-                    break;
+            case 4:
+                $cantIntentos ["intento4"]= ($intento4 += 1);
+                break;
 
-                case 5:
-                    $cantIntentos[4] = ($intento5 = $intento5 + 1);
-                    break;
+            case 5:
+                $cantIntentos ["intento5"]= ($intento5 += 1);
+                break;
 
-                case 6:
-                    $cantIntentos[5] = ($intento6 = $intento6 + 1);
-                    break;
-            }
+            case 6:
+                $cantIntentos ["intento6"]= ($intento6 += 1);
+                break;
         }
+    }
     }
     return $cantIntentos;
 }

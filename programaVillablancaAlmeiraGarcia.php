@@ -72,7 +72,9 @@ do {
             $partGanadas = victorias($jugador, $coleccionPartidasJugadas);
             $porcentaje = ($partGanadas / $partidasJugadas) * 100;
             $puntajeFinal = puntajeTotal($jugador, $coleccionPartidasJugadas);
-            echo $partidasJugadas;
+            $estadistica = adivinadas ($jugador, $coleccionPartidasJugadas);
+            print_r ($estadistica);
+            
 
             break;
 
