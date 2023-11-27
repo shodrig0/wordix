@@ -257,11 +257,7 @@ function imprimirPartida($coleccionPartidasPrecargadas, $valorIndicePartida)
  * Funcion para mostrar los intentos
  */
 function adivinadas ($jugador, $partJugada){
-    $jugadorDatosPrecargados[] = [
-        "jugador" => "",
-        "partidas" => 0,
-        "puntaje" => 0,
-        "victorias" => 0,
+    $cantIntentos[] = [
         "intento1" => 0,
         "intento2" => 0,
         "intento3" => 0,
@@ -270,37 +266,37 @@ function adivinadas ($jugador, $partJugada){
         "intento6" => 0
     ];
     
-$intento1 = 0;
-$intento2 = 0;
-$intento3 = 0;
-$intento4 = 0;
-$intento5 = 0;
-$intento6 = 0;
+// $intento1 = 0;
+// $intento2 = 0;
+// $intento3 = 0;
+// $intento4 = 0;
+// $intento5 = 0;
+// $intento6 = 0;
     for ($i = 0; $i < count ($partJugada); $i ++){
         if ($jugador == $partJugada [$i]["jugador"]){
         switch ($partJugada[$i]["intentos"]){
             case 1:
-                $cantIntentos ["intento1"]= ($intento1 += 1);
+                $cantIntentos["intento1"]++;
                 break;
 
             case 2:
-                $cantIntentos ["intento2"]= ($intento2 += 1);
+                $cantIntentos["intento2"]++;
                 break;
 
             case 3:
-                $cantIntentos ["intento3"]= ($intento3 += 1);
+                $cantIntentos["intento3"]++;
                 break;
 
             case 4:
-                $cantIntentos ["intento4"]= ($intento4 += 1);
+                $cantIntentos["intento4"]++;
                 break;
 
             case 5:
-                $cantIntentos ["intento5"]= ($intento5 += 1);
+                $cantIntentos["intento5"]++;
                 break;
 
             case 6:
-                $cantIntentos ["intento6"]= ($intento6 += 1);
+                $cantIntentos["intento6"]++;
                 break;
         }
     }
