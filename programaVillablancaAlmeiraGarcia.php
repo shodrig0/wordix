@@ -78,9 +78,7 @@ do {
 
         case 6:
             // punto 6 del menu
-            echo "Queres ver el listado de partidas, en orden alfabetico, por jugador o palabra?, ingrese en minuscula 'jugador' o 'palabra': ";
-            $respuestaDeOrden = trim(fgets(STDIN));
-            $respListado = alfabeticOrden($respuestaDeOrden);
+            alfabeticOrden();
 
             break;
 

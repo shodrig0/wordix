@@ -279,7 +279,8 @@ function imprimirPartida($coleccionPartidasPrecargadas, $valorIndicePartida)
 /**
  * Funcion para mostrar los intentos
  */
-function adivinadas ($jugador, $partJugada){
+function adivinadas($jugador, $partJugada)
+{
     $cantIntentos = [];
     $intento1 = 0;
     $intento2 = 0;
@@ -287,37 +288,57 @@ function adivinadas ($jugador, $partJugada){
     $intento4 = 0;
     $intento5 = 0;
     $intento6 = 0;
-    for ($i = 0; $i < count ($partJugada); $i ++){
-        if ($jugador == $partJugada [$i]["jugador"]){
-        switch ($partJugada[$i]["intentos"]){
-            case 1:
-                $cantIntentos [0]= ($intento1 = $intento1 + 1);
-                break;
+    for ($i = 0; $i < count($partJugada); $i++) {
+        if ($jugador == $partJugada[$i]["jugador"]) {
+            switch ($partJugada[$i]["intentos"]) {
+                case 1:
+                    $cantIntentos[0] = ($intento1 = $intento1 + 1);
+                    break;
 
-            case 2:
-                $cantIntentos [1]= ($intento2 = $intento2 + 1);
-                break;
+                case 2:
+                    $cantIntentos[1] = ($intento2 = $intento2 + 1);
+                    break;
 
-            case 3:
-                $cantIntentos [2]= ($intento3 = $intento3 + 1);
-                break;
+                case 3:
+                    $cantIntentos[2] = ($intento3 = $intento3 + 1);
+                    break;
 
-            case 4:
-                $cantIntentos [3]= ($intento4 = $intento4 + 1);
-                break;
+                case 4:
+                    $cantIntentos[3] = ($intento4 = $intento4 + 1);
+                    break;
 
-            case 5:
-                $cantIntentos [4]= ($intento5 = $intento5 + 1);
-                break;
+                case 5:
+                    $cantIntentos[4] = ($intento5 = $intento5 + 1);
+                    break;
 
-            case 6:
-                $cantIntentos [5]= ($intento6 = $intento6 + 1);
-                break;
-        }}
+                case 6:
+                    $cantIntentos[5] = ($intento6 = $intento6 + 1);
+                    break;
+            }
+        }
     }
     return $cantIntentos;
 }
 
+/**
+ * 
+ */
+
+function ordenarPalabras($partidaUno, $partidaDos)
+{
+    if ($partidaUno["jugador"] < $partidaDos["jugador"]) {
+        $orden = -1;
+    } elseif ($partidaUno["jugador"] > $partidaDos["jugador"]) {
+        $orden = 1;
+    } else {
+        if ($partidaUno["palabraWordix"] < $partidaDos["palabraWordix"]) {
+            $orden = -1;
+        } else {
+            $orden = 1;
+        }
+    }
+    return $orden;
+}
 
 /**
  * @param string $respuestaJugador
@@ -325,38 +346,10 @@ function adivinadas ($jugador, $partJugada){
  * @return string
  */
 
- function alfabeticOrden($respuesta)
- {
+function alfabeticOrden()
+{
     // string retorno $orden, invocacion array $cantDeJugadores
-     $orden = "";
-     $cantDeJugadores= cargarPartidas();
- 
-     while ($respuesta != "palabra" && $respuesta != "jugador") {
-         echo "Upss! Esa opcion no existe!\n";
-         echo "Ingrese 'jugador' o 'palabra': ";
-         $respuesta = trim(fgets(STDIN));
-     };
- 
-     if ($respuesta == "jugador") {
-         // orden alfabetico de los jugadores de la coleccion que se encuentra en datosPrecargados.php
-         
-         for ($indice = 0; $indice < Count($cantDeJugadores); $indice++) {
-                                            // sigo en busqueda de ese error .. 
-             $ordenAlfabeticoPorJugador = ($cantDeJugadores[$indice]["jugador"]) . "\n";
-             //me falta la organizacion alfabetica
-             //uasort($cantDeJugadores(), '');
-             $orden = print_r($ordenAlfabeticoPorJugador);
-         }
-     } elseif ($respuesta == "palabra") {
-         // orden alfabetico de las palabras de la coleccion que se encuentra en datosPrecargados.php
- 
-         $ordenAlfabeticoDePalabras = cargarColeccionPalabras();
-         // SACAMOS INDICES NUMERICOS?? 
- 
-         uasort($ordenAlfabeticoDePalabras, 'strcmp');
-         $orden = print_r($ordenAlfabeticoDePalabras);
-     }
- 
-     return $orden;
- }
-
+    $partidasOrd = cargarPartidas();
+    uasort($partidasOrd, 'ordenarPalabras');
+    print_r($partidasOrd);
+}
