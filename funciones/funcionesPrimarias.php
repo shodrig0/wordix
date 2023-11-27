@@ -14,6 +14,7 @@ CREO QUE SON LAS NECESARIAS QUE FALTAN:
 - comparacionDeValores();
 - partidasOrdenadasLista();
 - ordenAlfabeticoPorJugador() y otra ordenAlfabeticoPorPalabra()???;
+
 - AGREGAR MÁS SEGÚN LAS NECESIDADES
 */
 
@@ -43,6 +44,36 @@ function nombreDelJugador()
     $nombreJugador = strtolower($nombreJugador); // Función reutilizada que convierte un string en minusculas. Dada en el ejemplo de jugar wordix en el prog ppal.
     return $nombreJugador;
 }
+
+
+/**
+ * FUNCIÓN 4 O 7 YA NO SÉ ME PERDÍ
+ * Cambio de lógica
+ */
+
+ function agregarPalabra($palabraNueva, $coleccionPalabrasP)
+ {
+     $palabraExistente = false; //cambio de true a false
+     $iConteo = 0;
+     $cantPalabrasExistentes = count($coleccionPalabrasP);
+ 
+     while ($cantPalabrasExistentes > $iConteo && !$palabraExistente) {
+ 
+         if ($coleccionPalabrasP[$iConteo] == $palabraNueva) { // NO ES CON EL COUNT DEL ARRAY 
+             $palabraExistente = true;
+         }
+         $iConteo++;
+     }
+ 
+     if (!$palabraExistente) {
+         $coleccionPalabrasP[] = $palabraNueva;
+     } else {
+         echo "La palabra ya se encuentra en la colección :(\nIntenta con otra!\n";
+     }
+ 
+     return $coleccionPalabrasP;
+ }
+ 
 
 // OPCIÓN 1 MENÚ
 
@@ -117,6 +148,50 @@ function verificarNombreDelJugador($nombreJugador, $coleccionPartidasPrecargadas
     }
 
     return $nombreJugador;
+}
+
+//$iConteo = 0; VARIABLE USADA PARA WHILE
+
+    /**while ($iConteo < $cantPartidas && !$jugadorBuscado) {
+         if ($nombreJugador == $coleccionPartidasPrecargadas[$iConteo]["jugador"]) {
+             $jugadorBuscado = true;
+         } else {
+             echo "El nombre que ingresaste no está registrado! Prueba escribiéndolo otra vez\n";
+             $nombreJugador = nombreDelJugador();
+         }
+         $iConteo++; // incremeta su valor mediante el bucle
+     }
+ 
+     return $nombreJugador;
+     */
+    // SEGUIR PROBANDO CON WHILE, TAL VEZ SEA MEJOR QUE RECORRER TODO EL ARRAY. SIN FIXEAR
+
+/**
+ * Función necesaria para el menú 4.
+ */
+function primeraPartidaGanada($nombreJugador, $coleccionPartidasP) //cambiar despues nombre segundo param
+{
+    $victoria = false;
+    $contPrimeraPartidaGanada = 0;
+    $cantPartidas = count($coleccionPartidasP);
+
+    while ($contPrimeraPartidaGanada < $cantPartidas && !$victoria) { // bucle para ingresar al array y hacer recorrido parcial hasta que coincidan las condiciones
+        if ($nombreJugador == $coleccionPartidasP[$contPrimeraPartidaGanada]["jugador"] && $coleccionPartidasP[$contPrimeraPartidaGanada]["puntaje"] > 0) {
+            $victoria = true; // si el nombre del jugador existe, verificado con la función verificarNombreDelJugador, al momento de que la variable $victoria pase a true, sale del bucle.
+        if ($iConteo < $cantPartidas - 1) {
+            $iConteo++;
+        } else {
+            $contPrimeraPartidaGanada++; // se incrementa en cada bucle. SINO ARROJA CUALQUIER RESULTADO. PROBAR
+            $iConteo = 0; //volvemos a inicializar en 0 en caso de no encontrar el nombre del jugador.
+        }
+    }
+
+    if (!$victoria) {
+        $contPrimeraPartidaGanada = -1;
+    }
+
+}
+return $contPrimeraPartidaGanada; // retorna el indice del array, utilizado para después mostrarlo en pantalla con la otra función
 }
 
 /**
