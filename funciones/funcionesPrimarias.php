@@ -261,17 +261,17 @@ function imprimirPartida($coleccionPartidasPrecargadas, $valorIndicePartida)
 
     if ($puntaje > 0) {
         $aviso = "Adivinó la palabra en " . $intentos . " intento/s";
+        $partidaMostrada =
+            "\n****************************************************
+        Partida WORDIX $valorRealIndice: palabra $palabraWordix
+        Jugador: $jugadorRegistrado
+        Puntaje: $puntaje 
+        Intentos: $aviso 
+    ****************************************************\n";
     } else {
         $aviso = "No adivinó la palabra";
     }
 
-    $partidaMostrada =
-        "\n****************************************************
-    Partida WORDIX $valorRealIndice: palabra $palabraWordix
-    Jugador: $jugadorRegistrado
-    Puntaje: $puntaje 
-    Intentos: $aviso 
-****************************************************\n";
 
     return $partidaMostrada;
 }

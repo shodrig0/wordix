@@ -59,7 +59,7 @@ do {
         case 4:
             $nombreUsuario = nombreDelJugador();
             $nombreUsuario = verificarNombreDelJugador($nombreUsuario, $coleccionPartidasJugadas);
-            $partidaGanada = primeraPartidaGanada($nombreJugador, $coleccionPartidasJugadas); //si hay error, cambiar posicion
+            $partidaGanada = primeraPartidaGanada($nombreUsuario, $coleccionPartidasJugadas); //si hay error, cambiar posicion
             $imprimirPartida = imprimirPartida($coleccionPartidasJugadas, $partidaGanada);
             echo $imprimirPartida;
 
