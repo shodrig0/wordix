@@ -46,26 +46,27 @@ function nombreDelJugador()
 
 /**
  * FUNCIÓN 4 O 7 YA NO SÉ ME PERDÍ
+ * Cambio de lógica
  */
 
 function agregarPalabra($palabraNueva, $coleccionPalabrasP)
 {
-    $palabraExistente = true;
+    $palabraExistente = false; //cambio de true a false
     $iConteo = 0;
     $cantPalabrasExistentes = count($coleccionPalabrasP);
 
     while ($cantPalabrasExistentes > $iConteo && !$palabraExistente) {
 
         if ($cantPalabrasExistentes[$iConteo] == $palabraNueva) {
-            $palabraExistente = false;
+            $palabraExistente = true;
         }
         $iConteo++;
     }
 
-    if ($palabraExistente) {
-        echo "La palabra ya se encuentra en el array :( \n Intenta con otra! \n";
-    } else {
+    if (!$palabraExistente) {
         $coleccionPalabrasP[] = $palabraNueva;
+    } else {
+        echo "La palabra ya se encuentra en el array :( \n Intenta con otra! \n";
     }
 
     return $coleccionPalabrasP;
