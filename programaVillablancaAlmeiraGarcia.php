@@ -72,18 +72,22 @@ do {
             $partGanadas = victorias($jugador, $coleccionPartidasJugadas);
             $porcentaje = ($partGanadas / $partidasJugadas) * 100;
             $puntajeFinal = puntajeTotal($jugador, $coleccionPartidasJugadas);
-            $estadistica = adivinadas ($jugador, $coleccionPartidasJugadas);
-            print_r ($estadistica);
-
+            echo $partidasJugadas;
 
             break;
 
         case 6:
-            // punto 6 del menu
-            echo "Queres ver el listado de partidas, en orden alfabetico, por jugador o palabra?, ingrese en minuscula 'jugador' o 'palabra': ";
-            $respuestaDeOrden = trim(fgets(STDIN));
-            $respListado = alfabeticOrden($respuestaDeOrden);
-
+            // orden alfabetico de las palabras de la coleccion que se encuentra en datosPrecargados.php
+            $ordenAlfabeticoDePalabras = cargarColeccionPalabras();
+            uasort($var, 'strnatcmp');
+            print_r($var);
+            // orden alfabetico por jugador, usando el lista de datosPrecargados.php
+            $ordenPorJugador = cargarPartidas();
+            for ($indice = 0; $indice < count($var); $indice++) {
+                $nombre = ($var[$indice]["jugador"]) . "\n";
+                //uasort($var,"strcasecm");//me falta la organizacion alfabetica
+                print_r($nombre);
+            }
 
             break;
 
