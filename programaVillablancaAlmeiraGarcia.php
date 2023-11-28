@@ -77,7 +77,6 @@ do {
         case 7:
             $palabraNueva = leerPalabra5Letras();
             $coleccionPalabrasPrecargadas = agregarPalabra($palabraNueva, $coleccionPalabrasPrecargadas);
-            echo "Listo! Tu palabra ya fue agregada";
             break;
 
         case 8:

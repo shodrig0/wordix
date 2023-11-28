@@ -78,6 +78,7 @@ function agregarPalabra($palabraNueva, $coleccionPalabrasP)
 
     if (!$palabraExistente) {
         $coleccionPalabrasP[] = $palabraNueva;
+        echo "Listo! Tu palabra fue agregada a la colección :)";
     } else {
         echo "La palabra ya se encuentra en la colección :(\nIntenta con otra!\n";
     }
@@ -405,7 +406,7 @@ function compararPalabrasPartidas($partidaUno, $partidaDos)
         } else {
             $orden = 1;
         }
-    } elseif ($partidaUno["jugador"] < $partidaDos["jugador"]) {
+    } elseif ($partidaUno["jugador"] < $partidaDos["jugador"]) { // jugador de partida 1 es menor que jugador partida 2
         $orden = -1;
     }
     return $orden;
