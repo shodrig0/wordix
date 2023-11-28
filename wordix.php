@@ -7,7 +7,13 @@ Puede ser utilizada por cualquier programador para incluir en sus programas.
 */
 
 /**************************************/
-/***** DEFINICION DE CONSTANTES *******/
+/* Una variable constante es un
+    idenficador con un valor simple,
+    que no cambia durante la 
+    ejecuccion del programa, estos
+    se declaran siempre en mayuscula, 
+    ya que es sensible a las mayusculas
+    y minusculas */
 /**************************************/
 const CANT_INTENTOS = 6;
 
@@ -23,11 +29,25 @@ const ESTADO_LETRA_DESCARTADA = "descartada";
 const ESTADO_LETRA_PERTENECE = "pertenece";
 
 /**************************************/
-/***** DEFINICION DE FUNCIONES ********/
+/* Una funcion es un conjunto de 
+   instrucciones que pueden ser 
+   ejecutadas las veces que sean
+   necesarias en el programa. Las in-
+   vocaciones son atravez de parametros
+   dependiente de la funcion. Internamente,
+   la funcion posee parametros llamados
+   "parametros actuales". Pueden ser
+   invocadas/llamadas desde cualquier
+   lugar del programa. Los posibles
+   retornos son datos: string, boolean, 
+   int, float o sin retorno. */
 /**************************************/
 
 /**
- *  ****COMPLETAR*****
+ * Funcion que genera un rango entre un valor numerico minimo y un valor numerico maximo
+ * @param int $min
+ * @param int $max
+ * @return int
  */
 function solicitarNumeroEntre($min, $max)
 {
@@ -120,7 +140,7 @@ function escribirSegunEstado($texto, $estado)
 }
 
 /**
- * funcion de bienvenida
+ * Funcion cartel de bienvenida
  * @param string $usuario
  */
 function escribirMensajeBienvenida($usuario)
@@ -134,7 +154,8 @@ function escribirMensajeBienvenida($usuario)
 
 
 /**
- * Verifica y retorna si la palabra ingresada esta compuesta por letras exclusivamente, si no es asi devuelve false
+ * Verifica y retorna si la palabra ingresada esta compuesta por 
+ * letras exclusivamente, si no es asi devuelve false
  * @param $cadena
  * @return boolean
  */
@@ -154,7 +175,7 @@ function esPalabra($cadena)
 }
 
 /**
- * Registra una palabra de cinco letras, ingresada por el usuario, para guardarla en la ooleccion para ser usada en el juego
+ * Registra una palabra de cinco letras, ingresada por el usuario, para ser guardada en la ooleccion
  * @param string $palabra 
  * @return string
  */
@@ -176,6 +197,7 @@ function leerPalabra5Letras()
 
 /**
  * Inicia una estructura de datos Teclado. La estructura es de tipo: ¿Indexado, asociativo o Multidimensional?
+ * Es asociativo con claves string, al ser las letras del alfabeto
  *@return array
  */
 function iniciarTeclado()
