@@ -126,13 +126,13 @@ function verificarNombreDelJugador($nombreJugador, $coleccionPartidasPrecargadas
     $cantPartidas = count($coleccionPartidasPrecargadas);
 
     while ($iConteo < $cantPartidas && !$jugadorBuscado) {
-         if ($nombreJugador == $coleccionPartidasPrecargadas[$iConteo]["jugador"]) {
-             $jugadorBuscado = true;
-         }
-         $iConteo++; // incremeta su valor mediante el bucle
-     }
- 
-     return $nombreJugador;
+        if ($nombreJugador == $coleccionPartidasPrecargadas[$iConteo]["jugador"]) {
+            $jugadorBuscado = true;
+        }
+        $iConteo++; // incremeta su valor mediante el bucle
+    }
+
+    return $nombreJugador;
 }
 
 /**
@@ -256,7 +256,7 @@ function imprimirPartida($coleccionPartidasPrecargadas, $valorIndicePartida)
 /**
  * Funcion para mostrar los intentos
  */
-function adivinadas ($jugador, $partJugada){
+/**function adivinadas ($jugador, $partJugada){
     $cantIntentos[] = [
         "intento1" => 0,
         "intento2" => 0,
@@ -306,31 +306,31 @@ function adivinadas ($jugador, $partJugada){
     }
     }
     return $cantIntentos;
+} */
+
+function adivinadas($jugador, $partJugada)
+{
+    $cantIntentos = [
+        "intento1" => 0,
+        "intento2" => 0,
+        "intento3" => 0,
+        "intento4" => 0,
+        "intento5" => 0,
+        "intento6" => 0
+    ];
+
+    for ($i = 0; $i < count($partJugada); $i++) {
+        if ($jugador == $partJugada[$i]["jugador"]) {
+            $intentos = $partJugada[$i]["intentos"];
+
+            if ($intentos >= 1 && $intentos <= 6) {
+                $cantIntentos["intento" . $intentos]++;
+            }
+        }
+    }
+
+    return $cantIntentos;
 }
-
-// function adivinadas($jugador, $partJugada) {
-//     $cantIntentos = [
-//         "intento1" => 0,
-//         "intento2" => 0,
-//         "intento3" => 0,
-//         "intento4" => 0,
-//         "intento5" => 0,
-//         "intento6" => 0
-//     ];
-
-//     for ($i = 0; $i < count($partJugada); $i++) {
-//         if ($jugador == $partJugada[$i]["jugador"]) {
-//             $intentos = $partJugada[$i]["intentos"];
-            
-//             // Verificamos que el intento esté dentro del rango esperado
-//             if ($intentos >= 1 && $intentos <= 6) {
-//                 $cantIntentos["intento" . $intentos]++;
-//             }
-//         }
-//     }
-
-//     return $cantIntentos;
-// }
 
 /**
  * 
