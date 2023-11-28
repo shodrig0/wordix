@@ -20,8 +20,7 @@ CREO QUE SON LAS NECESARIAS QUE FALTAN:
 /**
  * Función que solicita el nombre del jugador. FUNCIÓN NECESARIA PARA CARGAR DATOS. 
  * FUNCIÓN 10
- * @param VACIO
- * @return STRING $nombreJugador
+ * @return string
  */
 
 function nombreDelJugador()
@@ -44,6 +43,10 @@ function nombreDelJugador()
     return $nombreJugador;
 }
 
+/**
+ * Funcion verifica si el nombre ya esta registrado
+ * @return string
+ */
 function nombreRegistrado()
 {
     echo "Quieres saber sobre un jugador? Ingresa su nombre:\n";
@@ -65,8 +68,10 @@ function nombreRegistrado()
 }
 
 /**
- * FUNCIÓN 4 O 7 YA NO SÉ ME PERDÍ
- * Cambio de lógica
+ * Función que agrega una palabra a la colección palabras para jugar
+ * @param string $palabraNueva
+ * @param array $coleccionPalabrasP
+ * @return array 
  */
 
 function agregarPalabra($palabraNueva, $coleccionPalabrasP)
@@ -92,7 +97,12 @@ function agregarPalabra($palabraNueva, $coleccionPalabrasP)
     return $coleccionPalabrasP;
 }
 
-// OPCIÓN 1 MENÚ
+/**
+ * Funcion para verificar si una palabra ya fue utilizada para jugar
+ * @param array $coleccionPalabras, $coleccionPartidasPrecargadas
+ * @param string $nombreJugador
+ * @return boolean
+ */
 
 function juegoPalabraElegida($coleccionPalabras, $coleccionPartidasPrecargadas, $nombreJugador)
 {
@@ -116,7 +126,12 @@ function juegoPalabraElegida($coleccionPalabras, $coleccionPartidasPrecargadas, 
     return $partida;
 }
 
-
+/**
+ * Funcion para verificar si la palabra fue utilizada
+ * @param string $nombreJugador
+ * @param array $coleccionPartidasPrecargadas, $coleccionPalabras
+ * @return boolean
+ */
 function verificarPalabra($nombreJugador, $coleccionPartidasPrecargadas, $coleccionPalabras, $indicePalabra)
 {
     $palabraAJugar = false; // Palabra utilizada? No, pues false, indicando que está disponible.
@@ -137,8 +152,11 @@ function verificarPalabra($nombreJugador, $coleccionPartidasPrecargadas, $colecc
 
 /**
  * Función necesaria para el menú, opción 4. Validar si el usuario existe.
+ * Funcion para verificar el nombre del jugador 
+ * @param string $nombreJugador
+ * @param array $coleccionPartidasPrecargadas
+ * @return string
  */
-
 function verificarNombreDelJugador($nombreJugador, $coleccionPartidasPrecargadas)
 {
     $jugadorBuscado = false;
@@ -157,6 +175,10 @@ function verificarNombreDelJugador($nombreJugador, $coleccionPartidasPrecargadas
 
 /**
  * Función necesaria para el menú 4.
+ * Funcion que muestra la primer partida ganada
+ * @param string $nombreJugador
+ * @param array $coleccionPartidasP
+ * @return int
  */
 function primeraPartidaGanada($nombreJugador, $coleccionPartidasP) //cambiar despues nombre segundo param
 {
@@ -180,8 +202,9 @@ function primeraPartidaGanada($nombreJugador, $coleccionPartidasP) //cambiar des
 }
 
 /**
+ * Funcion para obtener la informacion de una partida
  * @param array $coleccionPartidasPrecargadas
- * @return 
+ * @return array 
  * 
  */
 function listaIndicePartida($coleccionPartidasPrecargadas)
@@ -193,6 +216,12 @@ function listaIndicePartida($coleccionPartidasPrecargadas)
     return $indicePartidaSolicitada;
 }
 
+/**
+ * Funcion para indicar cuando un jugador no gano ninguna partida
+ * @param array $coleccionPartidasPrecargadas
+ * @param string $nombreJugador
+ * @return string
+ */
 function partidaNoGanada($coleccionPartidasPrecargadas, $nombreJugador)
 {
     $jugadorRegistrado = verificarNombreDelJugador($nombreJugador, $coleccionPartidasPrecargadas);
@@ -201,10 +230,10 @@ function partidaNoGanada($coleccionPartidasPrecargadas, $nombreJugador)
 }
 
 /**
- * busqueda y presentacion de inforacion sobre una partida
+ * busqueda y presentacion de informacion sobre una partida
  * @param array $coleccionPartidasPrecargadas
  * @param int $valorIndicePartida
- * @param return 
+ * @return string 
  * 
  */
 
@@ -297,6 +326,9 @@ function imprimirPartida($coleccionPartidasPrecargadas, $valorIndicePartida)
 
 /**
  * Funcion para contar la cantidad de partidas realizadas de un jugador
+ * @param string $jugador
+ * @param array $partJugada
+ * @return int
  */
 function cantidadDePartidas($jugador, $partJugada)
 {
@@ -312,6 +344,9 @@ function cantidadDePartidas($jugador, $partJugada)
 
 /**
  * Funcion para contar la cantidad de victorias de un jugador
+ * @param string $jugador
+ * @param array $partJugada
+ * @return int
  */
 function victorias($jugador, $partJugada)
 {
@@ -326,6 +361,9 @@ function victorias($jugador, $partJugada)
 
 /**
  * Funcion para calcular el puntaje total de un jugador
+ * @param string $jugador
+ * @param array $partJugada
+ * @return int
  */
 function puntajeTotal($jugador, $partJugada)
 {
@@ -338,12 +376,24 @@ function puntajeTotal($jugador, $partJugada)
     return $puntaje;
 }
 
+/**
+ * Funcion para calcular el porcentaje de victorias de un jugador
+ * @param int $victorias
+ * @param array $partJugada
+ * @return int
+ */
 function porcentajeJugador($victorias, $partJugada)
 {
     $resultado = ($victorias / $partJugada) * 100;
     return $resultado;
 }
 
+/**
+ * Funcion para guardar los datos de en que intento gano
+ * @param string $jugador
+ * @param array $partJugada
+ * @return array
+ */
 function adivinadas($jugador, $partJugada)
 {
     $cantIntentos = [
@@ -368,6 +418,12 @@ function adivinadas($jugador, $partJugada)
     return $cantIntentos;
 }
 
+/**
+ * Funcion para mostrar las estadisticas del jugador
+ * @param array $coleccionPartidas
+ * @param string $jugador
+ * @return string
+ */
 function estadisticasJugador($coleccionPartidas, $jugador)
 {
     $partidasJugadas = cantidadDePartidas($jugador, $coleccionPartidas);
@@ -391,7 +447,9 @@ function estadisticasJugador($coleccionPartidas, $jugador)
 }
 
 /**
- * 
+ * Funcion para ordenar las palabras 
+ * @param array $partidaUno, $partidaDos
+ * @return 
  */
 
 function ordenarPalabras($partidaUno, $partidaDos)
