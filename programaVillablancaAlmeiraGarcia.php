@@ -68,12 +68,14 @@ do {
         case 5:
             echo "Ingrese el nombre de un jugador", "\n";
             $jugador = trim(fgets(STDIN));
-            $partidasJugadas = cantidadDePartidas($jugador, $coleccionPartidasJugadas);
+            /*$partidasJugadas = cantidadDePartidas($jugador, $coleccionPartidasJugadas);
             $partGanadas = victorias($jugador, $coleccionPartidasJugadas);
             $porcentaje = ($partGanadas / $partidasJugadas) * 100;
             $puntajeFinal = puntajeTotal($jugador, $coleccionPartidasJugadas);
-            $estadistica = adivinadas($jugador, $coleccionPartidasJugadas);
-            print_r($estadistica);
+            $estadistica = adivinadas($jugador, $coleccionPartidasJugadas);*/
+            $mensajeEstadisticas = estadisticasJugador($coleccionPartidasJugadas, $jugador);
+            echo $mensajeEstadisticas;
+            //print_r($estadistica);
 
 
             break;
