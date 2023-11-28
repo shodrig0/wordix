@@ -37,30 +37,27 @@ do {
             $nombreUsuario = nombreDelJugador();
             $partida = juegoPalabraElegida($coleccionPalabrasPrecargadas, $coleccionPartidasJugadas, $nombreUsuario);
             $coleccionPartidasJugadas[] = $partida;
-            //print_r($coleccionPartidasJugadas);
 
             break;
 
         case 2:
+            $nombreUsuario = nombreDelJugador();
             $nro = random_int(0, count($coleccionPalabrasPrecargadas));
             $indice = $coleccionPalabrasPrecargadas[$nro];
             $partidaActual = jugarWordix($indice, $nombreUsuario);
             break;
 
         case 3:
-            /* Menu punto 3 */
-            //invocacion de funciones
             $nroIndicePartida = listaIndicePartida($coleccionPartidasJugadas);
-            $imprimirPartida = imprimirPartida($coleccionPartidasJugadas, $nroIndicePartida);
+            $imprimirPartida = imprimirPartida($coleccionPartidasJugadas, $nroIndicePartida, $nombreUsuario);
             echo $imprimirPartida;
-
             break;
 
         case 4:
             $nombreUsuario = nombreRegistrado();
             $nombreUsuario = verificarNombreDelJugador($nombreUsuario, $coleccionPartidasJugadas);
             $partidaGanada = primeraPartidaGanada($nombreUsuario, $coleccionPartidasJugadas); //si hay error, cambiar posicion
-            $imprimirPartida = imprimirPartida($coleccionPartidasJugadas, $partidaGanada);
+            $imprimirPartida = imprimirPartida($coleccionPartidasJugadas, $partidaGanada, $nombreUsuario);
             echo $imprimirPartida;
 
             break;
@@ -68,33 +65,21 @@ do {
         case 5:
             echo "Ingrese el nombre de un jugador", "\n";
             $jugador = trim(fgets(STDIN));
-            /*$partidasJugadas = cantidadDePartidas($jugador, $coleccionPartidasJugadas);
-            $partGanadas = victorias($jugador, $coleccionPartidasJugadas);
-            $porcentaje = ($partGanadas / $partidasJugadas) * 100;
-            $puntajeFinal = puntajeTotal($jugador, $coleccionPartidasJugadas);
-            $estadistica = adivinadas($jugador, $coleccionPartidasJugadas);*/
             $mensajeEstadisticas = estadisticasJugador($coleccionPartidasJugadas, $jugador);
             echo $mensajeEstadisticas;
-            //print_r($estadistica);
-
-
             break;
 
         case 6:
-            // punto 6 del menu
             alfabeticOrden();
-
             break;
 
         case 7:
-            // PUNTO 7 DEL MENU
             $palabraNueva = leerPalabra5Letras();
             $coleccionPalabrasPrecargadas = agregarPalabra($palabraNueva, $coleccionPalabrasPrecargadas);
             echo "Listo! Tu palabra ya fue agregada";
             break;
 
         case 8:
-
             $juegoPartida = true;
     }
 } while (!$juegoPartida);
