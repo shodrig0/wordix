@@ -382,9 +382,14 @@ function puntajeTotal($jugador, $partJugada)
  * @param array $partJugada
  * @return int
  */
-function porcentajeJugador($victorias, $partJugada)
+function porcentajeJugador($victorias, $coleccionPartidasP)
 {
-    $resultado = ($victorias / $partJugada) * 100;
+    $resultado = 0;
+
+    if ($coleccionPartidasP > 0) {
+        $resultado = ($victorias / $coleccionPartidasP) * 100;
+    }
+
     return $resultado;
 }
 
