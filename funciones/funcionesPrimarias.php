@@ -474,9 +474,8 @@ function ordenarPalabras($partidaUno, $partidaDos)
 }
 
 /**
- * @param string $respuestaJugador
- * @param string $respuestaPalabra
- * @return string
+ * Ordena de forma alfabetica los jugadores y las palabras que jugaron
+ * Su retorno es directo desde el print, que se invoca en el prog. pincipal
  */
 
 function alfabeticOrden()
