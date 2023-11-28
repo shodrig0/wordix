@@ -414,7 +414,7 @@ function ordenarPalabras($partidaUno, $partidaDos)
 function alfabeticOrden()
 {
     // string retorno $orden, invocacion array $cantDeJugadores
-    $partidasOrd[] = cargarPartidas();
+    $partidasOrd = cargarPartidas();
     uasort($partidasOrd, 'ordenarPalabras');
     print_r($partidasOrd);
 }
