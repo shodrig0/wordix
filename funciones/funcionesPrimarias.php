@@ -366,12 +366,14 @@ function estadisticasJugador($coleccionPartidas, $jugador)
 {
     $partidasJugadas = cantidadDePartidas($jugador, $coleccionPartidas);
     $victorias = victorias($jugador, $coleccionPartidas);
+    $porcentaje = porcentajeJugador ($jugador, $coleccionPartidas);
     $puntajeTotal = puntajeTotal($jugador, $coleccionPartidas);
     $intentosAdivinados = adivinadas($jugador, $coleccionPartidas);
-
+    
     $mensaje = "Estadísticas del jugador:\n";
     $mensaje .= "Partidas jugadas: $partidasJugadas\n";
     $mensaje .= "Victorias: $victorias\n";
+    $mensaje .= "Porcentaje: $porcentaje\n";
     $mensaje .= "Puntaje total: $puntajeTotal\n";
     $mensaje .= "Intentos adivinados:\n";
 
@@ -414,4 +416,9 @@ function alfabeticOrden()
     $partidasOrd[] = cargarPartidas();
     uasort($partidasOrd, 'ordenarPalabras');
     print_r($partidasOrd);
+}
+
+function porcentajeJugador ($victorias, $cantPartidas){
+    $resultado = ($victorias / $cantPartidas) * 100;
+    return $resultado;
 }
