@@ -52,6 +52,7 @@ function cargarPartidas()
     $coleccionPartidasPrecargadas[13] = ["palabraWordix" => "REINA", "jugador" => "clauu", "intentos" => 2, "puntaje" => 14];
     $coleccionPartidasPrecargadas[14] = ["palabraWordix" => "PISOS", "jugador" => "il3l", "intentos" => 0, "puntaje" => 0];
     $coleccionPartidasPrecargadas[15] = ["palabraWordix" => "REINA", "jugador" => "facuu", "intentos" => 2, "puntaje" => 14];
+    $coleccionPartidasPrecargadas[16] = ["palabraWordix" => "TINTO", "jugador" => "ian", "intentos" => 0, "puntaje" => 0];
 
     return $coleccionPartidasPrecargadas;
 }

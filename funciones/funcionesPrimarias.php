@@ -36,9 +36,29 @@ function nombreDelJugador()
         $primeraLetraNombre = $nombreJugador[0]; // Recorro el string empezando desde 0 (primer caracter) para validar que no sea un número el primer caracter del nombre.
 
         if (!ctype_alpha($primeraLetraNombre)) { // Función utilizada de wordix.php para verificar que sólo sean letras.
-            echo "Hmmm, algo está mal. Recuerda que el nombre debe comenzar con una letra! \(￣︶￣*\)): ";
+            echo "Hmmm, algo está mal. Recuerda que el nombre debe comenzar con una letra! \(￣︶￣*\)):\n";
         }
     } while (!ctype_alpha($primeraLetraNombre));
+
+    $nombreJugador = strtolower($nombreJugador); // Función reutilizada que convierte un string en minusculas. Dada en el ejemplo de jugar wordix en el prog ppal.
+    return $nombreJugador;
+}
+
+function nombreRegistrado()
+{
+    echo "Quieres saber sobre un jugador? Ingresa su nombre:\n";
+    $nombreJugador = "";
+    $primeraLetraNombre = "";
+    do {
+        $nombreJugador = trim(fgets(STDIN));
+
+        $primeraLetraNombre = $nombreJugador[0]; // Recorro el string empezando desde 0 (primer caracter) para validar que no sea un número el primer caracter del nombre.
+
+        if (!ctype_alpha($primeraLetraNombre)) { // Función utilizada de wordix.php para verificar que sólo sean letras.
+            echo "Hmmm, algo está mal. Recuerda que el nombre debe comenzar con una letra! \(￣︶￣*\)):\n";
+        }
+    } while (!ctype_alpha($primeraLetraNombre));
+
 
     $nombreJugador = strtolower($nombreJugador); // Función reutilizada que convierte un string en minusculas. Dada en el ejemplo de jugar wordix en el prog ppal.
     return $nombreJugador;
@@ -159,63 +179,25 @@ function primeraPartidaGanada($nombreJugador, $coleccionPartidasP) //cambiar des
     return $contPrimeraPartidaGanada; // retorna el indice del array, utilizado para después mostrarlo en pantalla con la otra función
 }
 
-
-/**
- * Funcion para contar la cantidad de partidas realizadas de un jugador
- */
-function cantidadDePartidas($jugador, $partJugada)
-{
-    $cantPartidas = 0;
-    for ($i = 0; $i < count($partJugada); $i++) {
-        $nombreUsuario = $partJugada[$i]["jugador"];
-        if ($jugador == $nombreUsuario) {
-            $cantPartidas++;
-        }
-    }
-    return $cantPartidas;
-}
-
-/**
- * Funcion para contar la cantidad de victorias de un jugador
- */
-function victorias($jugador, $partJugada)
-{
-    $victorias = 0;
-    for ($i = 0; $i < count($partJugada); $i++) {
-        if ($jugador == $partJugada[$i]["jugador"] && $partJugada[$i]["puntaje"] > 0) {
-            $victorias++;
-        }
-    }
-    return $victorias;
-}
-
-/**
- * Funcion para calcular el puntaje total de un jugador
- */
-function puntajeTotal($jugador, $partJugada)
-{
-    $puntaje = 0;
-    for ($i = 0; $i < count($partJugada); $i++) {
-        if ($jugador == $partJugada[$i]["jugador"]) {
-            $puntaje = $puntaje + $partJugada[$i]["puntaje"];
-        }
-    }
-    return $puntaje;
-}
-
 /**
  * @param array $coleccionPartidasPrecargadas
  * @return 
  * 
  */
-
 function listaIndicePartida($coleccionPartidasPrecargadas)
 {
     $limiteDelListado = count($coleccionPartidasPrecargadas);
-    echo "\nIngrese un numero, entre 0 y ", $limiteDelListado, ", para conocer la informacion sobre esa partida: ", "\n";
+    echo "\nIngrese un número, entre 1 y " . $limiteDelListado . ", para conocer la información sobre esa partida: " . "\n";
     $indicePartidaSolicitada = solicitarNumeroEntre(1, $limiteDelListado); //función de wordix.php reutilizada
     $indicePartidaSolicitada -= 1; // el array siempre comienza desde 0, por lo que a la variable hay que restarle 1 para que coincida
     return $indicePartidaSolicitada;
+}
+
+function partidaNoGanada($coleccionPartidasPrecargadas, $nombreJugador)
+{
+    $jugadorRegistrado = verificarNombreDelJugador($nombreJugador, $coleccionPartidasPrecargadas);
+    $mensaje = "El jugador $jugadorRegistrado no ganó ninguna partida! :(";
+    return $mensaje;
 }
 
 /**
@@ -228,29 +210,34 @@ function listaIndicePartida($coleccionPartidasPrecargadas)
 
 function imprimirPartida($coleccionPartidasPrecargadas, $valorIndicePartida)
 {
-    //if numero == UN ALGO que retorne el modulo 4
-    //strig $jugador, $palabra, $puntaje, $intentos, $aviso, $valorRealIndice
-    $valorRealIndice = $valorIndicePartida + 1; //El array cuenta desde 0, por ende hay que sumarle un 1 para que coincida el indice real, con el indice a mostrar.
-    $palabraWordix = $coleccionPartidasPrecargadas[$valorIndicePartida]["palabraWordix"];
-    $jugadorRegistrado = $coleccionPartidasPrecargadas[$valorIndicePartida]["jugador"];
-    $puntaje = $coleccionPartidasPrecargadas[$valorIndicePartida]["puntaje"];
-    $intentos = $coleccionPartidasPrecargadas[$valorIndicePartida]["intentos"];
+    $mensaje = "";
 
-    if ($puntaje > 0) {
-        $aviso = "Adivinó la palabra en " . $intentos . " intento/s";
-        $partidaMostrada =
-            "\n****************************************************
-        Partida WORDIX $valorRealIndice: palabra $palabraWordix
-        Jugador: $jugadorRegistrado
-        Puntaje: $puntaje 
-        Intentos: $aviso 
-    ****************************************************\n";
+    if ($valorIndicePartida == -1) {
+        $mensaje = partidaNoGanada($coleccionPartidasPrecargadas, $valorIndicePartida);
     } else {
-        $aviso = "No adivinó la palabra";
+        $valorRealIndice = $valorIndicePartida + 1;
+        $palabraWordix = $coleccionPartidasPrecargadas[$valorIndicePartida]["palabraWordix"];
+        $jugadorRegistrado = $coleccionPartidasPrecargadas[$valorIndicePartida]["jugador"];
+        $puntaje = $coleccionPartidasPrecargadas[$valorIndicePartida]["puntaje"];
+        $intentos = $coleccionPartidasPrecargadas[$valorIndicePartida]["intentos"];
+
+        $aviso = "";
+
+        if ($puntaje > 0) {
+            $aviso = "Adivinó la palabra en " . $intentos . " intento/s";
+        } else {
+            $aviso = "No adivinó la palabra";
+        }
+
+        $mensaje =         "**************************************************************\n   
+        Partida WORDIX $valorRealIndice: palabra $palabraWordix \n          
+        Jugador: $jugadorRegistrado \n
+        Puntaje: $puntaje \n
+        Intentos: $aviso \n
+        \n**************************************************************";
     }
 
-
-    return $partidaMostrada;
+    return $mensaje;
 }
 
 /**
@@ -307,6 +294,49 @@ function imprimirPartida($coleccionPartidasPrecargadas, $valorIndicePartida)
     }
     return $cantIntentos;
 } */
+
+/**
+ * Funcion para contar la cantidad de partidas realizadas de un jugador
+ */
+function cantidadDePartidas($jugador, $partJugada)
+{
+    $cantPartidas = 0;
+    for ($i = 0; $i < count($partJugada); $i++) {
+        $nombreUsuario = $partJugada[$i]["jugador"];
+        if ($jugador == $nombreUsuario) {
+            $cantPartidas++;
+        }
+    }
+    return $cantPartidas;
+}
+
+/**
+ * Funcion para contar la cantidad de victorias de un jugador
+ */
+function victorias($jugador, $partJugada)
+{
+    $victorias = 0;
+    for ($i = 0; $i < count($partJugada); $i++) {
+        if ($jugador == $partJugada[$i]["jugador"] && $partJugada[$i]["puntaje"] > 0) {
+            $victorias++;
+        }
+    }
+    return $victorias;
+}
+
+/**
+ * Funcion para calcular el puntaje total de un jugador
+ */
+function puntajeTotal($jugador, $partJugada)
+{
+    $puntaje = 0;
+    for ($i = 0; $i < count($partJugada); $i++) {
+        if ($jugador == $partJugada[$i]["jugador"]) {
+            $puntaje = $puntaje + $partJugada[$i]["puntaje"];
+        }
+    }
+    return $puntaje;
+}
 
 function adivinadas($jugador, $partJugada)
 {

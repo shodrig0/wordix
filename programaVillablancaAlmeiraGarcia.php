@@ -57,7 +57,7 @@ do {
             break;
 
         case 4:
-            $nombreUsuario = nombreDelJugador();
+            $nombreUsuario = nombreRegistrado();
             $nombreUsuario = verificarNombreDelJugador($nombreUsuario, $coleccionPartidasJugadas);
             $partidaGanada = primeraPartidaGanada($nombreUsuario, $coleccionPartidasJugadas); //si hay error, cambiar posicion
             $imprimirPartida = imprimirPartida($coleccionPartidasJugadas, $partidaGanada);
@@ -72,9 +72,9 @@ do {
             $partGanadas = victorias($jugador, $coleccionPartidasJugadas);
             $porcentaje = ($partGanadas / $partidasJugadas) * 100;
             $puntajeFinal = puntajeTotal($jugador, $coleccionPartidasJugadas);
-            $estadistica = adivinadas ($jugador, $coleccionPartidasJugadas);
-            print_r ($estadistica);
-            
+            $estadistica = adivinadas($jugador, $coleccionPartidasJugadas);
+            print_r($estadistica);
+
 
             break;
 
