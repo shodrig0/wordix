@@ -70,7 +70,8 @@ do {
             break;
 
         case 6:
-            alfabeticOrden();
+            $ordenP = alfabeticOrden($coleccionPartidasJugadas);
+            print_r($ordenP);
             break;
 
         case 7:
