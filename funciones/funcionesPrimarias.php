@@ -4,18 +4,6 @@ include_once("wordix.php");
 include_once("programaVillablancaAlmeiraGarcia.php");
 include_once("datosPrecargados.php");
 
-/* Acá van a ir las funciones primarias 
-CREO QUE SON LAS NECESARIAS QUE FALTAN: 
-- calcularPuntos();
-- jugarPalabraRandom(); (Lugar donde guardar las palabras random elegidas y palabras prohibidas a usar)
-- buscarPartidaPrecargada();
-- primeraPartidaGanada();
-- jugadorEstadisticas();
-- comparacionDeValores();
-- partidasOrdenadasLista();
-- ordenAlfabeticoPorJugador() y otra ordenAlfabeticoPorPalabra()???;
-- AGREGAR MÁS SEGÚN LAS NECESIDADES
-*/
 
 /**
  * Función que solicita el nombre del jugador. FUNCIÓN NECESARIA PARA CARGAR DATOS. 
@@ -237,12 +225,12 @@ function partidaNoGanada($coleccionPartidasPrecargadas, $nombreJugador)
  * 
  */
 
-function imprimirPartida($coleccionPartidasPrecargadas, $valorIndicePartida)
+function imprimirPartida($coleccionPartidasPrecargadas, $valorIndicePartida, $nombreJugador)
 {
     $mensaje = "";
 
     if ($valorIndicePartida == -1) {
-        $mensaje = partidaNoGanada($coleccionPartidasPrecargadas, $valorIndicePartida);
+        $mensaje = partidaNoGanada($coleccionPartidasPrecargadas, $nombreJugador);
     } else {
         $valorRealIndice = $valorIndicePartida + 1;
         $palabraWordix = $coleccionPartidasPrecargadas[$valorIndicePartida]["palabraWordix"];
@@ -259,70 +247,15 @@ function imprimirPartida($coleccionPartidasPrecargadas, $valorIndicePartida)
         }
 
         $mensaje =         "**************************************************************\n   
-        Partida WORDIX $valorRealIndice: palabra $palabraWordix \n          
-        Jugador: $jugadorRegistrado \n
-        Puntaje: $puntaje \n
-        Intentos: $aviso \n
-        \n**************************************************************";
+         Partida WORDIX $valorRealIndice: palabra $palabraWordix \n          
+         Jugador: $jugadorRegistrado \n
+         Puntaje: $puntaje \n
+         Intentos: $aviso \n
+         \n**************************************************************";
     }
 
     return $mensaje;
 }
-
-/**
- * Funcion para mostrar los intentos
- */
-/**function adivinadas ($jugador, $partJugada){
-    $cantIntentos[] = [
-        "intento1" => 0,
-        "intento2" => 0,
-        "intento3" => 0,
-        "intento4" => 0,
-        "intento5" => 0,
-        "intento6" => 0
-    ];
-    
-// $intento1 = 0;
-// $intento2 = 0;
-// $intento3 = 0;
-// $intento4 = 0;
-// $intento5 = 0;
-// $intento6 = 0;
-    for ($i = 0; $i < count ($partJugada); $i ++){
-        if ($jugador == $partJugada [$i]["jugador"]){
-
-
-
-            
-        switch ($partJugada[$i]["intentos"]){
-            case 1:
-                $cantIntentos["intento1"]++;
-                break;
-
-            case 2:
-                $cantIntentos["intento2"]++;
-                break;
-
-            case 3:
-                $cantIntentos["intento3"]++;
-                break;
-
-            case 4:
-                $cantIntentos["intento4"]++;
-                break;
-
-            case 5:
-                $cantIntentos["intento5"]++;
-                break;
-
-            case 6:
-                $cantIntentos["intento6"]++;
-                break;
-        }
-    }
-    }
-    return $cantIntentos;
-} */
 
 /**
  * Funcion para contar la cantidad de partidas realizadas de un jugador
