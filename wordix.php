@@ -283,10 +283,15 @@ function imprimirIntentosWordix($estructuraIntentosWordix)
  */
 function analizarPalabraIntento($palabraWordix, $estruturaIntentosWordix, $palabraIntento)
 {
+    // array $estructuraPalabraIntento - $estado 
+    // boolean $posicion  
+    // string $letraIntento
     $cantCaracteres = strlen($palabraIntento);
+    // strlen valora la cantidad de bytes en en la cadena, la cant. de caracteres 
     $estructuraPalabraIntento = []; /*almacena cada letra de la palabra intento con su estado */
     for ($i = 0; $i < $cantCaracteres; $i++) {
         $letraIntento = $palabraIntento[$i];
+        //strpos busca la 1era coincidencia con el valor de $letraIntento 
         $posicion = strpos($palabraWordix, $letraIntento);
         if ($posicion === false) {
             $estado = ESTADO_LETRA_DESCARTADA;
@@ -299,7 +304,7 @@ function analizarPalabraIntento($palabraWordix, $estruturaIntentosWordix, $palab
         }
         array_push($estructuraPalabraIntento, ["letra" => $letraIntento, "estado" => $estado]);
     }
-
+    // array_push inserta uno o mas elementos en el array
     array_push($estruturaIntentosWordix, $estructuraPalabraIntento);
     return $estruturaIntentosWordix;
 }
@@ -317,6 +322,7 @@ function analizarPalabraIntento($palabraWordix, $estruturaIntentosWordix, $palab
  */
 function actualizarTeclado($teclado, $estructuraPalabraIntento)
 {
+    //string $letra, $estado
     foreach ($estructuraPalabraIntento as $letraIntento) {
         $letra = $letraIntento["letra"];
         $estado = $letraIntento["estado"];
@@ -341,6 +347,8 @@ function actualizarTeclado($teclado, $estructuraPalabraIntento)
  */
 function esIntentoGanado($estructuraPalabraIntento)
 {
+    //int $cantLetras, $i
+    // boolean $ganado
     $cantLetras = count($estructuraPalabraIntento);
     $i = 0;
 
@@ -387,7 +395,7 @@ function obtenerPuntajeWordix($palabraWordix, $nroIntento)
             $puntaje = 1;
             break;
     }
-
+    //string $letra
     foreach (str_split($palabraWordix) as $letra) { //recorrido exhaustivo para leer todos los elementos del array convertido
         if ($letra == "A" || $letra == "E" || $letra == "I" || $letra == "O" || $letra == "U") {
             $puntaje += 1;
@@ -417,6 +425,10 @@ function jugarWordix($palabraWordix, $nombreUsuario)
     escribirMensajeBienvenida($nombreUsuario);
     $nroIntento = 1;
     do {
+        //int $nroIntento, $indiceIntento
+        //array $teclado, arregloDeIntentosWordix
+        //string $palabraIntento
+        //boolean $ganoElIntento
 
         echo "Comenzar con el Intento " . $nroIntento . ":\n";
         $palabraIntento = leerPalabra5Letras();
@@ -442,7 +454,9 @@ function jugarWordix($palabraWordix, $nombreUsuario)
         $puntaje = 0;
         echo "Seguí Jugando Wordix, la próxima será! ";
     }
-
+    
+    //string $palabraWordix, $nombreUsuario
+    //int $nroIntento, $puntaje
     $partida = [
         "palabraWordix" => $palabraWordix,
         "jugador" => $nombreUsuario,

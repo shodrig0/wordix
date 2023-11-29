@@ -24,6 +24,7 @@ $juegoPartida = false;
 //Proceso:
 
 do {
+    /*int $opcion*/
     echo imprimirMenu();
     echo "\nIngrese una opción: ";
     $opcion = solicitarNumeroEntre(1, 8);
@@ -31,6 +32,9 @@ do {
     switch ($opcion) {
 
         case 1:
+            /*string $nombreUsuario
+              bool $partida
+              array $coleccionPartidasJugadas*/
             $nombreUsuario = nombreDelJugador();
             $partida = juegoPalabraElegida($coleccionPalabrasPrecargadas, $coleccionPartidasJugadas, $nombreUsuario);
             $coleccionPartidasJugadas[] = $partida;
@@ -38,6 +42,9 @@ do {
             break;
 
         case 2:
+            /*string $nombreUsuario
+              int $nro
+              array $coleccionPartidasJugadas, $indice, $partidaActual*/
             $nombreUsuario = nombreDelJugador();
             $nro = random_int(0, count($coleccionPalabrasPrecargadas));
             $indice = $coleccionPalabrasPrecargadas[$nro];
@@ -45,12 +52,16 @@ do {
             break;
 
         case 3:
+            /*string $imprimirPartida
+              array $nroIndicePartida*/
             $nroIndicePartida = listaIndicePartida($coleccionPartidasJugadas);
             $imprimirPartida = imprimirPartida($coleccionPartidasJugadas, $nroIndicePartida, $nombreUsuario);
             echo $imprimirPartida;
             break;
 
         case 4:
+            /*string $nombreUsuario, $imprimirPartida
+              int $partidaGanada*/
             $nombreUsuario = nombreRegistrado();
             $nombreUsuario = verificarNombreDelJugador($nombreUsuario, $coleccionPartidasJugadas);
             $partidaGanada = primeraPartidaGanada($nombreUsuario, $coleccionPartidasJugadas); //si hay error, cambiar posicion
@@ -60,6 +71,7 @@ do {
             break;
 
         case 5:
+            /*string $jugador, $mensajeEstadistica*/
             echo "Ingrese el nombre de un jugador", "\n";
             $jugador = trim(fgets(STDIN));
             $mensajeEstadisticas = estadisticasJugador($coleccionPartidasJugadas, $jugador);
@@ -67,18 +79,22 @@ do {
             break;
 
         case 6:
+            /*array $ordenP*/
             $ordenP = ordenPartida($coleccionPartidasJugadas);
             print_r($ordenP);
             break;
 
         case 7:
+            /*string $palabraNueva
+              array $coleccionPalabrasPrecargadas*/
             $palabraNueva = leerPalabra5Letras();
             $coleccionPalabrasPrecargadas = agregarPalabra($palabraNueva, $coleccionPalabrasPrecargadas);
             break;
 
         case 8:
+            /*boolean $juegoPartida*/
             $juegoPartida = true;
     }
 } while (!$juegoPartida);
 
-echo "fin juego, nos vemos pronto!";
+echo "Fin del juego, nos vemos pronto!!";
