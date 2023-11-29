@@ -244,9 +244,9 @@ function partidaNoGanada($coleccionPartidasPrecargadas, $nombreJugador)
 
 function imprimirPartida($coleccionPartidasPrecargadas, $valorIndicePartida, $nombreJugador)
 {
-//string $mensaje
+//string $mensaje, $aviso
 //int $valorRealIndice
-//
+//arrayb $palabraWordix, $jugadorRegistrado, $puntaje, $intentos
     $mensaje = "";
 
     if ($valorIndicePartida == -1) {
@@ -285,6 +285,7 @@ function imprimirPartida($coleccionPartidasPrecargadas, $valorIndicePartida, $no
  */
 function cantidadDePartidas($jugador, $partJugada)
 {
+//int $cantPartidas
     $cantPartidas = 0;
     for ($i = 0; $i < count($partJugada); $i++) {
         $nombreUsuario = $partJugada[$i]["jugador"];
@@ -303,6 +304,7 @@ function cantidadDePartidas($jugador, $partJugada)
  */
 function victorias($jugador, $partJugada)
 {
+//int $victorias
     $victorias = 0;
     for ($i = 0; $i < count($partJugada); $i++) {
         if ($jugador == $partJugada[$i]["jugador"] && $partJugada[$i]["puntaje"] > 0) {
@@ -320,6 +322,7 @@ function victorias($jugador, $partJugada)
  */
 function puntajeTotal($jugador, $partJugada)
 {
+//int $puntaje
     $puntaje = 0;
     for ($i = 0; $i < count($partJugada); $i++) {
         if ($jugador == $partJugada[$i]["jugador"]) {
@@ -337,6 +340,7 @@ function puntajeTotal($jugador, $partJugada)
  */
 function porcentajeJugador($victorias, $coleccionPartidasP)
 {
+//int $resultado
     $resultado = 0;
 
     if ($coleccionPartidasP > 0) {
@@ -354,6 +358,7 @@ function porcentajeJugador($victorias, $coleccionPartidasP)
  */
 function adivinadas($jugador, $partJugada)
 {
+//array $cantIntentos
     $cantIntentos = [
         "intento1" => 0,
         "intento2" => 0,
@@ -384,6 +389,11 @@ function adivinadas($jugador, $partJugada)
  */
 function estadisticasJugador($coleccionPartidas, $jugador)
 {
+//string $mensaje
+//boolean $jugadorEnColeccion
+//int $partidasJugadas, $victorias, $puntajeTotal
+//float $porcentaje
+//array $intentosAdivinados
     $mensaje = "";
     $jugadorEnColeccion = false;
     foreach ($coleccionPartidas as $partida) {
@@ -465,6 +475,7 @@ function imprimirOrdenPartida($coleccionPartidasPrecargadas)
  */
 function ordenLista($partidaUno, $partidaDos)
 {
+//array $compPalabra
     //strcmp() sirve para comparar cadena de caracteres
     $compPalabra = strcmp($partidaUno["jugador"], $partidaDos["jugador"]);
     if ($compPalabra == 0) {
