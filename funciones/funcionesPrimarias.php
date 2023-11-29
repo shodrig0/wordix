@@ -97,7 +97,7 @@ function juegoPalabraElegida($coleccionPalabras, $coleccionPartidasPrecargadas, 
 {
     $palabraDisponible = false; // nombre dudoso pero sería determinar que la palabra está válida para jugar
     $cantPalabrasUtilizadas = count($coleccionPalabras);
-    echo "Ahora elige un número de 1 hasta $cantPalabrasUtilizadas: ";
+    echo "Ahora elige un número de 1 hasta $cantPalabrasUtilizadas:\n";
     do {
         $numeroElegido = solicitarNumeroEntre(1, $cantPalabrasUtilizadas); //función reutilizada de wordix.php
         $indice = $numeroElegido - 1;
@@ -106,7 +106,7 @@ function juegoPalabraElegida($coleccionPalabras, $coleccionPartidasPrecargadas, 
         $palabraDisponible = verificarPalabra($nombreJugador, $coleccionPartidasPrecargadas, $coleccionPalabras, $indice);
         echo $palabraDisponible;
         if ($palabraDisponible) {
-            echo "Ups, esa palabra ya fue utilizada!: ";
+            echo "\nUps, esa palabra ya fue utilizada!:\n";
         }
     } while ($palabraDisponible);
 
@@ -214,7 +214,7 @@ function listaIndicePartida($coleccionPartidasPrecargadas)
 function partidaNoGanada($coleccionPartidasPrecargadas, $nombreJugador)
 {
     $jugadorRegistrado = verificarNombreDelJugador($nombreJugador, $coleccionPartidasPrecargadas);
-    $mensaje = "El jugador $jugadorRegistrado no ganó ninguna partida! :(";
+    $mensaje = "El jugador $jugadorRegistrado no ganó ninguna partida! :(\n";
     return $mensaje;
 }
 
@@ -357,6 +357,13 @@ function adivinadas($jugador, $partJugada)
     return $cantIntentos;
 }
 
+/**function registroJugadorEstadistica($coleccionPartidasPrecargadas, $nombreJugador)
+{
+    $jugadorRegistrado = verificarNombreDelJugador($nombreJugador, $coleccionPartidasPrecargadas);
+    $mensaje = "El jugador $jugadorRegistrado no ganó ninguna partida! :(\n";
+    return $mensaje;
+}*/
+
 /**
  * Funcion para mostrar las estadisticas del jugador
  * @param array $coleccionPartidas
@@ -372,6 +379,7 @@ function estadisticasJugador($coleccionPartidas, $jugador)
     $intentosAdivinados = adivinadas($jugador, $coleccionPartidas);
 
     $mensaje = "Estadísticas del jugador:\n";
+    $mensaje .= "Nombre Jugador: $jugador\n";
     $mensaje .= "Partidas jugadas: $partidasJugadas\n";
     $mensaje .= "Victorias: $victorias\n";
     $mensaje .= "Porcentaje: $porcentaje%\n";
