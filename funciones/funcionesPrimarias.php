@@ -379,7 +379,7 @@ function estadisticasJugador($coleccionPartidas, $jugador)
         $porcentaje = porcentajeJugador($victorias, $partidasJugadas);
         $puntajeTotal = puntajeTotal($jugador, $coleccionPartidas);
         $intentosAdivinados = adivinadas($jugador, $coleccionPartidas);
-        $mensaje = "Estadísticas del jugador:\n";
+        $mensaje = "\nEstadísticas del jugador:\n";
         $mensaje .= "Nombre Jugador: $jugador\n";
         $mensaje .= "Partidas jugadas: $partidasJugadas\n";
         $mensaje .= "Victorias: $victorias\n";
@@ -391,7 +391,7 @@ function estadisticasJugador($coleccionPartidas, $jugador)
             $mensaje .= "$intentos: $cantidad\n";
         }
     } else {
-        $mensaje .= "Ese jugador no existe";
+        $mensaje .= "\nEse jugador no existe!\n";
     }
 
     return $mensaje;
