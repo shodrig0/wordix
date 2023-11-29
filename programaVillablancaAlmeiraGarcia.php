@@ -3,18 +3,15 @@ include_once("wordix.php");
 include_once("datosPrecargados.php");
 include_once("./menu/opciones.php");
 include_once("./funciones/funcionesPrimarias.php");
-// MODULARIZAR MENU
-
-
-/**************************************/
-/***** DEFINICION DE FUNCIONES ********/
-/**************************************/
-
 
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
-
+/**
+ *   Villablanca Rodrigo / Legajo FAI-5097 / email: rodrialvillablanca@gmail.com / Github: shodrig0
+ *   Garcia Romero Paola Fernanda / Legajo FAI-4387 / email: paolagarcianqn@gmail.com / Github: PaoGarciaRF
+ *   Almeira Ilel Luciana / Legajo FAI4914 / email: ilelalmeira@gmail.com / Github: ilelalmeira
+ */
 //Declaración de variables:
 
 
@@ -70,7 +67,7 @@ do {
             break;
 
         case 6:
-            $ordenP = alfabeticOrden($coleccionPartidasJugadas);
+            $ordenP = ordenPartida($coleccionPartidasJugadas);
             print_r($ordenP);
             break;
 

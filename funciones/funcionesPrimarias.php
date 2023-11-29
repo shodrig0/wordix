@@ -392,7 +392,7 @@ function estadisticasJugador($coleccionPartidas, $jugador)
  * @return 
  */
 
-function compararPalabrasPartidas($partidaUno, $partidaDos)
+/*function compararPalabrasPartidas($partidaUno, $partidaDos)
 {
     $orden = 0;
 
@@ -412,10 +412,6 @@ function compararPalabrasPartidas($partidaUno, $partidaDos)
     return $orden;
 }
 
-/**
- * Ordena de forma alfabetica los jugadores y las palabras que jugaron
- * Su retorno es directo desde el print, que se invoca en el prog. pincipal
- */
 
 function alfabeticOrden($coleccionPartidasPrecargadas)
 {
@@ -428,5 +424,24 @@ function alfabeticOrden($coleccionPartidasPrecargadas)
 function imprimirOrdenPartida($coleccionPartidasPrecargadas)
 {
     $ordenP = alfabeticOrden($coleccionPartidasPrecargadas);
-    print_r($ordenP);
+    return $ordenP;
+}*/
+
+function ordenLista($partidaUno, $partidaDos)
+{
+    //strcmp() sirve para comparar cadena de caracteres
+    $compPalabra = strcmp($partidaUno["jugador"], $partidaDos["jugador"]);
+    if ($compPalabra == 0) {
+        $compPalabra = strcmp($partidaUno["palabraWordix"], $partidaDos["palabraWordix"]);
+    }
+    return $compPalabra;
+}
+
+function ordenPartida($coleccionPartidasP)
+{
+    uasort($coleccionPartidasP, "ordenLista");
+
+    $coleccionPartidasP = array_values($coleccionPartidasP);
+
+    return $coleccionPartidasP;
 }
