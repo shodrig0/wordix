@@ -441,6 +441,7 @@ function ordenPartida($coleccionPartidasP)
 {
     uasort($coleccionPartidasP, "ordenLista");
 
+    //sort($coleccionPartidasP);
     $coleccionPartidasP = array_values($coleccionPartidasP);
 
     return $coleccionPartidasP;
