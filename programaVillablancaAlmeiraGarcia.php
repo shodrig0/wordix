@@ -38,7 +38,6 @@ do {
             $nombreUsuario = nombreDelJugador();
             $partida = juegoPalabraElegida($coleccionPalabrasPrecargadas, $coleccionPartidasJugadas, $nombreUsuario);
             $coleccionPartidasJugadas[] = $partida;
-
             break;
 
         case 2:
@@ -49,6 +48,7 @@ do {
             $nro = random_int(0, count($coleccionPalabrasPrecargadas));
             $indice = $coleccionPalabrasPrecargadas[$nro];
             $partidaActual = jugarWordix($indice, $nombreUsuario);
+            $coleccionPartidasJugadas[] = $partidaActual;
             break;
 
         case 3:
