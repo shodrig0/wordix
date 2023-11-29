@@ -357,13 +357,6 @@ function adivinadas($jugador, $partJugada)
     return $cantIntentos;
 }
 
-/**function registroJugadorEstadistica($coleccionPartidasPrecargadas, $nombreJugador)
-{
-    $jugadorRegistrado = verificarNombreDelJugador($nombreJugador, $coleccionPartidasPrecargadas);
-    $mensaje = "El jugador $jugadorRegistrado no ganó ninguna partida! :(\n";
-    return $mensaje;
-}*/
-
 /**
  * Funcion para mostrar las estadisticas del jugador
  * @param array $coleccionPartidas
