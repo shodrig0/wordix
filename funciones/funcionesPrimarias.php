@@ -365,22 +365,33 @@ function adivinadas($jugador, $partJugada)
  */
 function estadisticasJugador($coleccionPartidas, $jugador)
 {
-    $partidasJugadas = cantidadDePartidas($jugador, $coleccionPartidas);
-    $victorias = victorias($jugador, $coleccionPartidas);
-    $porcentaje = porcentajeJugador($victorias, $partidasJugadas);
-    $puntajeTotal = puntajeTotal($jugador, $coleccionPartidas);
-    $intentosAdivinados = adivinadas($jugador, $coleccionPartidas);
+    $mensaje = "";
+    $jugadorEnColeccion = false;
+    foreach ($coleccionPartidas as $partida) {
+        if ($partida["jugador"] == $jugador) {
+            $jugadorEnColeccion = true;
+        }
+    }
 
-    $mensaje = "Estadísticas del jugador:\n";
-    $mensaje .= "Nombre Jugador: $jugador\n";
-    $mensaje .= "Partidas jugadas: $partidasJugadas\n";
-    $mensaje .= "Victorias: $victorias\n";
-    $mensaje .= "Porcentaje: $porcentaje%\n";
-    $mensaje .= "Puntaje total: $puntajeTotal\n";
-    $mensaje .= "Intentos adivinados:\n";
+    if ($jugadorEnColeccion) {
+        $partidasJugadas = cantidadDePartidas($jugador, $coleccionPartidas);
+        $victorias = victorias($jugador, $coleccionPartidas);
+        $porcentaje = porcentajeJugador($victorias, $partidasJugadas);
+        $puntajeTotal = puntajeTotal($jugador, $coleccionPartidas);
+        $intentosAdivinados = adivinadas($jugador, $coleccionPartidas);
+        $mensaje = "Estadísticas del jugador:\n";
+        $mensaje .= "Nombre Jugador: $jugador\n";
+        $mensaje .= "Partidas jugadas: $partidasJugadas\n";
+        $mensaje .= "Victorias: $victorias\n";
+        $mensaje .= "Porcentaje: $porcentaje %\n";
+        $mensaje .= "Puntaje total: $puntajeTotal\n";
+        $mensaje .= "Intentos adivinados:\n";
 
-    foreach ($intentosAdivinados as $intentos => $cantidad) {
-        $mensaje .= "$intentos: $cantidad\n";
+        foreach ($intentosAdivinados as $intentos => $cantidad) {
+            $mensaje .= "$intentos: $cantidad\n";
+        }
+    } else {
+        $mensaje .= "Ese jugador no existe";
     }
 
     return $mensaje;
