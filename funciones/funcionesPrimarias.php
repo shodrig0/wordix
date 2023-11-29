@@ -439,6 +439,11 @@ function imprimirOrdenPartida($coleccionPartidasPrecargadas)
     return $ordenP;
 }*/
 
+/**
+ * Funcion para ordenar las palabras
+ * @param array $patidaUno, $partidaDos
+ * @return int
+ */
 function ordenLista($partidaUno, $partidaDos)
 {
     //strcmp() sirve para comparar cadena de caracteres
@@ -449,6 +454,11 @@ function ordenLista($partidaUno, $partidaDos)
     return $compPalabra;
 }
 
+/**
+ * Funcion para mostrar las partidas en orden alfabetico
+ * @param array $coleccionPartidasP
+ * @return array
+ */
 function ordenPartida($coleccionPartidasP)
 {
     uasort($coleccionPartidasP, "ordenLista");
