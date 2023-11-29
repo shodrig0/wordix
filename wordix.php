@@ -358,7 +358,10 @@ function esIntentoGanado($estructuraPalabraIntento)
 }
 
 /**
- * ****COMPLETAR***** documentación de la intefaz
+ * Obtiene el puntaje mediante la cantidad de intentos y los valores de cada letra 
+ * @param string $palabraWordix
+ * @param int $nroIntento
+ * @return int
  */
 function obtenerPuntajeWordix($palabraWordix, $nroIntento)
 {
