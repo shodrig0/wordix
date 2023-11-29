@@ -13,6 +13,7 @@ include_once("datosPrecargados.php");
 
 function nombreDelJugador()
 {
+//string $nombreJugador, $primeraLetraNombre
     echo "Veo que has decidido jugar! Entonces ingresa tu nombre: " . "\n";
     echo "El nombre debe comenzar con una letra ^_^" . "\n";
     $nombreJugador = "";
@@ -37,6 +38,7 @@ function nombreDelJugador()
  */
 function nombreRegistrado()
 {
+//string $nombreJugador, $primeraLetraNombre
     echo "Quieres saber sobre un jugador? Ingresa su nombre:\n";
     $nombreJugador = "";
     $primeraLetraNombre = "";
@@ -64,6 +66,8 @@ function nombreRegistrado()
 
 function agregarPalabra($palabraNueva, $coleccionPalabrasP)
 {
+//boolean $palabraExistente
+//int $iConteo, $cantPalabrasExistentes
     $palabraExistente = false; //cambio de true a false
     $iConteo = 0;
     $cantPalabrasExistentes = count($coleccionPalabrasP);
@@ -95,6 +99,9 @@ function agregarPalabra($palabraNueva, $coleccionPalabrasP)
 
 function juegoPalabraElegida($coleccionPalabras, $coleccionPartidasPrecargadas, $nombreJugador)
 {
+//boolean $palabraDisponible
+//array $palabraAJugar, $palabraDisponible, $partida
+//int $indice, $numeroElegido, $cantPalabrasUtilizadas
     $palabraDisponible = false; // nombre dudoso pero sería determinar que la palabra está válida para jugar
     $cantPalabrasUtilizadas = count($coleccionPalabras);
     echo "Ahora elige un número de 1 hasta $cantPalabrasUtilizadas:\n";
@@ -123,6 +130,8 @@ function juegoPalabraElegida($coleccionPalabras, $coleccionPartidasPrecargadas, 
  */
 function verificarPalabra($nombreJugador, $coleccionPartidasPrecargadas, $coleccionPalabras, $indicePalabra)
 {
+//boolean $palabraAJugar
+//int $iConteo, $cantidadPartidas
     $palabraAJugar = false; // Palabra utilizada? No, pues false, indicando que está disponible.
     $iConteo = 0; //Variable iteradora, necesaria para el conteo en el bucle while. Inicializada en 0 para que coincida con el índice del array.
     $cantidadPartidas = count($coleccionPartidasPrecargadas);
@@ -148,6 +157,8 @@ function verificarPalabra($nombreJugador, $coleccionPartidasPrecargadas, $colecc
  */
 function verificarNombreDelJugador($nombreJugador, $coleccionPartidasPrecargadas)
 {
+//boolean $jugadorBuscado
+//int $iConteo, $cantPartidas
     $jugadorBuscado = false;
     $iConteo = 0;
     $cantPartidas = count($coleccionPartidasPrecargadas);
@@ -171,6 +182,8 @@ function verificarNombreDelJugador($nombreJugador, $coleccionPartidasPrecargadas
  */
 function primeraPartidaGanada($nombreJugador, $coleccionPartidasP) //cambiar despues nombre segundo param
 {
+//boolean $victoria
+//int $contPrimeraPartidaGanada, $cantPartidas
     $victoria = false;
     $contPrimeraPartidaGanada = 0;
     $cantPartidas = count($coleccionPartidasP);
@@ -198,6 +211,7 @@ function primeraPartidaGanada($nombreJugador, $coleccionPartidasP) //cambiar des
  */
 function listaIndicePartida($coleccionPartidasPrecargadas)
 {
+//int $limiteDeListado, $indicePartidaSolicitada
     $limiteDelListado = count($coleccionPartidasPrecargadas);
     echo "\nIngrese un número, entre 1 y " . $limiteDelListado . ", para conocer la información sobre esa partida: " . "\n";
     $indicePartidaSolicitada = solicitarNumeroEntre(1, $limiteDelListado); //función de wordix.php reutilizada
@@ -213,6 +227,8 @@ function listaIndicePartida($coleccionPartidasPrecargadas)
  */
 function partidaNoGanada($coleccionPartidasPrecargadas, $nombreJugador)
 {
+//boolean $jugadorRegistrado
+//string $mensaje
     $jugadorRegistrado = verificarNombreDelJugador($nombreJugador, $coleccionPartidasPrecargadas);
     $mensaje = "El jugador $jugadorRegistrado no ganó ninguna partida! :(\n";
     return $mensaje;
@@ -228,6 +244,9 @@ function partidaNoGanada($coleccionPartidasPrecargadas, $nombreJugador)
 
 function imprimirPartida($coleccionPartidasPrecargadas, $valorIndicePartida, $nombreJugador)
 {
+//string $mensaje
+//int $valorRealIndice
+//
     $mensaje = "";
 
     if ($valorIndicePartida == -1) {
