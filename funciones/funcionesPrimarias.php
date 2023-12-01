@@ -319,66 +319,31 @@ function estadisticasJugador($coleccionPartidas, $jugador)
         }
     }
 
-    $mensaje .= "\nEstadísticas del jugador:\n";
-    $mensaje .= "Nombre Jugador: $jugador\n";
-    $mensaje .= "Partidas jugadas: $partidasJugadas\n";
-    $mensaje .= "Victorias: $victorias\n";
-    $mensaje .= "Porcentaje: ";
-    if ($partidasJugadas > 0) {
-        $porcentaje = ($victorias / $partidasJugadas) * 100;
-        $mensaje .= "$porcentaje %\n";
+    if ($jugadorEnColeccion) {
+        $mensaje .= "\nEstadísticas del jugador:\n";
+        $mensaje .= "Nombre Jugador: $jugador\n";
+        $mensaje .= "Partidas jugadas: $partidasJugadas\n";
+        $mensaje .= "Victorias: $victorias\n";
+        $mensaje .= "Porcentaje: ";
+        if ($partidasJugadas > 0) {
+            $porcentaje = ($victorias / $partidasJugadas) * 100;
+            $mensaje .= "$porcentaje %\n";
+        } else {
+            $mensaje .= "0%\n";
+        }
+
+        $mensaje .= "Puntaje total: $puntajeTotal\n";
+        $mensaje .= "Intentos adivinados:\n";
+
+        foreach ($intentosAdivinados as $intentos => $cantidad) {
+            $mensaje .= "$intentos: $cantidad\n";
+        }
     } else {
-        $mensaje .= "0%\n";
-    }
-
-    $mensaje .= "Puntaje total: $puntajeTotal\n";
-    $mensaje .= "Intentos adivinados:\n";
-
-    foreach ($intentosAdivinados as $intentos => $cantidad) { //bucle utilizado para acceder al array intentos e imprimirlos en el mensaje
-        $mensaje .= "$intentos: $cantidad\n";
-    }
-
-    if (!$jugadorEnColeccion) {
         $mensaje .= "\nEse jugador no existe!\n";
     }
 
     return $mensaje;
 }
-
-/*function compararPalabrasPartidas($partidaUno, $partidaDos)
-{
-    $orden = 0;
-
-    if ($partidaUno["jugador"] > $partidaDos["jugador"]) { //jugador de la primer partida mayor con la partida a comparar
-        $orden = 1;
-    } elseif ($partidaUno["jugador"] == $partidaDos["jugador"]) {
-        $orden = -1;
-
-        if ($partidaUno["palabraWordix"] < $partidaDos["palabraWordix"]) {
-            $orden = -1;
-        } else {
-            $orden = 1;
-        }
-    } elseif ($partidaUno["jugador"] < $partidaDos["jugador"]) { // jugador de partida 1 es menor que jugador partida 2
-        $orden = -1;
-    }
-    return $orden;
-}
-
-
-function alfabeticOrden($coleccionPartidasPrecargadas)
-{
-    // orden alfabetico de colecciones partidas
-    uasort($coleccionPartidasPrecargadas, "compararPalabrasPartidas");
-
-    return $coleccionPartidasPrecargadas;
-}
-
-function imprimirOrdenPartida($coleccionPartidasPrecargadas)
-{
-    $ordenP = alfabeticOrden($coleccionPartidasPrecargadas);
-    return $ordenP;
-}*/
 
 /**
  * Funcion para ordenar las palabras
@@ -405,7 +370,6 @@ function ordenPartida($coleccionPartidasP)
 {
     uasort($coleccionPartidasP, "ordenLista");
 
-    //sort($coleccionPartidasP);
     $coleccionPartidasP = array_values($coleccionPartidasP);
 
     return $coleccionPartidasP;
