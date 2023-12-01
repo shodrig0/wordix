@@ -278,88 +278,19 @@ function imprimirPartida($coleccionPartidasPrecargadas, $valorIndicePartida, $no
 }
 
 /**
- * Funcion para contar la cantidad de partidas realizadas de un jugador
+ * Función para obtener las estadísticas del jugador
+ * @param array $coleccionPartidas
  * @param string $jugador
- * @param array $partJugada
- * @return int
+ * @return string
  */
-function cantidadDePartidas($jugador, $partJugada)
+function estadisticasJugador($coleccionPartidas, $jugador)
 {
-//int $cantPartidas
-    $cantPartidas = 0;
-    for ($i = 0; $i < count($partJugada); $i++) {
-        $nombreUsuario = $partJugada[$i]["jugador"];
-        if ($jugador == $nombreUsuario) {
-            $cantPartidas++;
-        }
-    }
-    return $cantPartidas;
-}
-
-/**
- * Funcion para contar la cantidad de victorias de un jugador
- * @param string $jugador
- * @param array $partJugada
- * @return int
- */
-function victorias($jugador, $partJugada)
-{
-//int $victorias
+    $mensaje = "";
+    $jugadorEnColeccion = false;
+    $partidasJugadas = 0;
     $victorias = 0;
-    for ($i = 0; $i < count($partJugada); $i++) {
-        if ($jugador == $partJugada[$i]["jugador"] && $partJugada[$i]["puntaje"] > 0) {
-            $victorias++;
-        }
-    }
-    return $victorias;
-}
-
-/**
- * Funcion para calcular el puntaje total de un jugador
- * @param string $jugador
- * @param array $partJugada
- * @return int
- */
-function puntajeTotal($jugador, $partJugada)
-{
-//int $puntaje
-    $puntaje = 0;
-    for ($i = 0; $i < count($partJugada); $i++) {
-        if ($jugador == $partJugada[$i]["jugador"]) {
-            $puntaje = $puntaje + $partJugada[$i]["puntaje"];
-        }
-    }
-    return $puntaje;
-}
-
-/**
- * Funcion para calcular el porcentaje de victorias de un jugador
- * @param int $victorias
- * @param array $partJugada
- * @return int
- */
-function porcentajeJugador($victorias, $coleccionPartidasP)
-{
-//int $resultado
-    $resultado = 0;
-
-    if ($coleccionPartidasP > 0) {
-        $resultado = ($victorias / $coleccionPartidasP) * 100;
-    }
-
-    return $resultado;
-}
-
-/**
- * Funcion para guardar los datos de en que intento gano
- * @param string $jugador
- * @param array $partJugada
- * @return array
- */
-function adivinadas($jugador, $partJugada)
-{
-//array $cantIntentos
-    $cantIntentos = [
+    $puntajeTotal = 0;
+    $intentosAdivinados = [ //array vacío de intentos
         "intento1" => 0,
         "intento2" => 0,
         "intento3" => 0,
@@ -368,70 +299,51 @@ function adivinadas($jugador, $partJugada)
         "intento6" => 0
     ];
 
-    for ($i = 0; $i < count($partJugada); $i++) {
-        if ($jugador == $partJugada[$i]["jugador"]) {
-            $intentos = $partJugada[$i]["intentos"];
+    for ($i = 0; $i < count($coleccionPartidas); $i++) {
+        $partida = $coleccionPartidas[$i];
 
-            if ($intentos >= 1 && $intentos <= 6) {
-                $cantIntentos["intento" . $intentos]++;
+        if ($partida["jugador"] == $jugador) {
+            $jugadorEnColeccion = true;
+            $partidasJugadas++;
+
+            if ($partida["puntaje"] > 0) {
+                $victorias++;
+            }
+
+            $puntajeTotal += $partida["puntaje"];
+
+            $intentos = $partida["intentos"];
+            if ($intentos >= 1) {
+                $intentosAdivinados["intento" . $intentos]++; //concatenamos la clave "intento" con la posición en la que se encuentra en el recorrido.
             }
         }
     }
 
-    return $cantIntentos;
-}
-
-/**
- * Funcion para mostrar las estadisticas del jugador
- * @param array $coleccionPartidas
- * @param string $jugador
- * @return string
- */
-function estadisticasJugador($coleccionPartidas, $jugador)
-{
-//string $mensaje
-//boolean $jugadorEnColeccion
-//int $partidasJugadas, $victorias, $puntajeTotal
-//float $porcentaje
-//array $intentosAdivinados
-    $mensaje = "";
-    $jugadorEnColeccion = false;
-    foreach ($coleccionPartidas as $partida) {
-        if ($partida["jugador"] == $jugador) {
-            $jugadorEnColeccion = true;
-        }
+    $mensaje .= "\nEstadísticas del jugador:\n";
+    $mensaje .= "Nombre Jugador: $jugador\n";
+    $mensaje .= "Partidas jugadas: $partidasJugadas\n";
+    $mensaje .= "Victorias: $victorias\n";
+    $mensaje .= "Porcentaje: ";
+    if ($partidasJugadas > 0) {
+        $porcentaje = ($victorias / $partidasJugadas) * 100;
+        $mensaje .= "$porcentaje %\n";
+    } else {
+        $mensaje .= "0%\n";
     }
 
-    if ($jugadorEnColeccion) {
-        $partidasJugadas = cantidadDePartidas($jugador, $coleccionPartidas);
-        $victorias = victorias($jugador, $coleccionPartidas);
-        $porcentaje = porcentajeJugador($victorias, $partidasJugadas);
-        $puntajeTotal = puntajeTotal($jugador, $coleccionPartidas);
-        $intentosAdivinados = adivinadas($jugador, $coleccionPartidas);
-        $mensaje = "\nEstadísticas del jugador:\n";
-        $mensaje .= "Nombre Jugador: $jugador\n";
-        $mensaje .= "Partidas jugadas: $partidasJugadas\n";
-        $mensaje .= "Victorias: $victorias\n";
-        $mensaje .= "Porcentaje: $porcentaje %\n";
-        $mensaje .= "Puntaje total: $puntajeTotal\n";
-        $mensaje .= "Intentos adivinados:\n";
+    $mensaje .= "Puntaje total: $puntajeTotal\n";
+    $mensaje .= "Intentos adivinados:\n";
 
-        foreach ($intentosAdivinados as $intentos => $cantidad) {
-            $mensaje .= "$intentos: $cantidad\n";
-        }
-    } else {
+    foreach ($intentosAdivinados as $intentos => $cantidad) { //bucle utilizado para acceder al array intentos e imprimirlos en el mensaje
+        $mensaje .= "$intentos: $cantidad\n";
+    }
+
+    if (!$jugadorEnColeccion) {
         $mensaje .= "\nEse jugador no existe!\n";
     }
 
     return $mensaje;
 }
-
-/**
- * Funcion para ordenar las palabras 
- * @param array $partidaUno
- * @param array $partidaDos
- * @return 
- */
 
 /*function compararPalabrasPartidas($partidaUno, $partidaDos)
 {
