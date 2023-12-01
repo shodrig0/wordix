@@ -72,8 +72,7 @@ do {
 
         case 5:
             /*string $jugador, $mensajeEstadistica*/
-            echo "Ingrese el nombre de un jugador", "\n";
-            $jugador = trim(fgets(STDIN));
+            $jugador = nombreRegistrado();
             $mensajeEstadisticas = estadisticasJugador($coleccionPartidasJugadas, $jugador);
             echo $mensajeEstadisticas;
             break;

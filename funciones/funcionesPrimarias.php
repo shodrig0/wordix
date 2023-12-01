@@ -33,26 +33,13 @@ function nombreDelJugador()
 }
 
 /**
- * Funcion verifica si el nombre ya esta registrado
+ * Funcion para ingresar el nombre del case 4
  * @return string
  */
 function nombreRegistrado()
 {
-//string $nombreJugador, $primeraLetraNombre
     echo "Quieres saber sobre un jugador? Ingresa su nombre:\n";
-    $nombreJugador = "";
-    $primeraLetraNombre = "";
-    do {
-        $nombreJugador = trim(fgets(STDIN));
-
-        $primeraLetraNombre = $nombreJugador[0]; // Recorro el string empezando desde 0 (primer caracter) para validar que no sea un número el primer caracter del nombre.
-
-        if (!ctype_alpha($primeraLetraNombre)) { // Función utilizada de wordix.php para verificar que sólo sean letras.
-            echo "Hmmm, algo está mal. Recuerda que el nombre debe comenzar con una letra! \(￣︶￣*\)):\n";
-        }
-    } while (!ctype_alpha($primeraLetraNombre));
-
-
+    $nombreJugador = trim(fgets(STDIN));
     $nombreJugador = strtolower($nombreJugador); // Función reutilizada que convierte un string en minusculas. Dada en el ejemplo de jugar wordix en el prog ppal.
     return $nombreJugador;
 }
@@ -157,9 +144,8 @@ function verificarPalabra($nombreJugador, $coleccionPartidasPrecargadas, $colecc
  */
 function verificarNombreDelJugador($nombreJugador, $coleccionPartidasPrecargadas)
 {
-//boolean $jugadorBuscado
-//int $iConteo, $cantPartidas
     $jugadorBuscado = false;
+    $resultadoBusqueda = ""; //Dependiendo la condición al final del bucle se asignará al nombre jugador
     $iConteo = 0;
     $cantPartidas = count($coleccionPartidasPrecargadas);
 
@@ -170,7 +156,11 @@ function verificarNombreDelJugador($nombreJugador, $coleccionPartidasPrecargadas
         $iConteo++; // incremeta su valor mediante el bucle
     }
 
-    return $nombreJugador;
+    if ($jugadorBuscado) {
+        $resultadoBusqueda = $nombreJugador;
+    }
+
+    return $resultadoBusqueda;
 }
 
 /**
@@ -227,10 +217,12 @@ function listaIndicePartida($coleccionPartidasPrecargadas)
  */
 function partidaNoGanada($coleccionPartidasPrecargadas, $nombreJugador)
 {
-//boolean $jugadorRegistrado
-//string $mensaje
     $jugadorRegistrado = verificarNombreDelJugador($nombreJugador, $coleccionPartidasPrecargadas);
-    $mensaje = "El jugador $jugadorRegistrado no ganó ninguna partida! :(\n";
+    if ($jugadorRegistrado) {
+        $mensaje = "El jugador $jugadorRegistrado no ganó ninguna partida! :(\n";
+    } else {
+        $mensaje = "\nHmmm, parece que este jugador no tiene registros! :/\n";
+    }
     return $mensaje;
 }
 
